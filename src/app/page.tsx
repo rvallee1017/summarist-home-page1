@@ -1,69 +1,437 @@
 import Image from "next/image";
+import { AiFillFileText, AiFillBulb, AiFillAudio } from "react-icons/ai";
+import { BsStarFill, BsStarHalf } from "react-icons/bs";
+import { BiCrown } from "react-icons/bi";
+import { RiLeafLine } from "react-icons/ri";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <nav className="h-20">
+        <div className="flex h-full w-full max-w-[1070px] items-center justify-between mx-auto px-6">
+          <figure className="max-w-[200px]">
+            <img className="w-full h-full" src="/assets/logo.png" alt="logo" />
+          </figure>
+
+          <ul className="flex gap-6">
+            <li className="cursor-pointer text-[#032b41] transition-colors duration-100 hover:text-[#2bd97c]">
+              Login
+            </li>
+            <li className="cursor-not-allowed text-[#032b41]">About</li>
+            <li className="cursor-not-allowed text-[#032b41]">Contact</li>
+            <li className="cursor-not-allowed text-[#032b41]">Help</li>
+          </ul>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+      </nav>
+
+      <section>
+        <div className="flex">
+          <div className="w-full max-w-[1070px] mx-auto px-6">
+            <h1 className="text-[40px] font-bold text-[#032b41] mb-6">
+              Gain more knowledge <br />
+              in less time
+            </h1>
+
+            <p className="text-xl font-light text-[#394547] mb-6 leading-[1.5]">
+              Great summaries for busy people,
+              <br />
+              individuals who barely have time to read,
+              <br />
+              and even people who don’t like to read.
+            </p>
+
+            <button
+              className="flex h-10 w-full min-w-[180px] max-w-[300px]
+        items-center justify-center rounded
+      bg-[#2bd97c] text-[#032b41]
+        transition-colors duration-200
+      hover:bg-[#20ba68]
+        active:translate-y-px
+        disabled:cursor-not-allowed disabled:opacity-65"
+            >
+              Login
+            </button>
+          </div>
+
+          <figure className="flex w-full justify-end">
+            <img
+              className="w-full h-full max-w-[400px]"
+              src="/assets/landing.png"
+              alt="landing"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </figure>
         </div>
-      </main>
-    </div>
+      </section>
+      <section>
+        <div className="w-full py-10">
+          <div className="w-full max-w-[1070px] mx-auto px-6">
+            <h2 className="mb-8 text-center text-[32px] font-bold text-[#032b41]">
+              Understand books in few minutes
+            </h2>
+            <div className="grid grid-cols-3 gap-10 mb-24">
+              <div className="flex flex-col items-center text-center">
+                <div className="flex justify-center mb-2 text-[#032b41]">
+                  <AiFillFileText className="w-[60px] h-[60px]" />
+                </div>
+                <div className="text-2xl text-[#032b41] mb-4 font-medium">
+                  Read or listen
+                </div>
+                <div className="text-lg text-[#394547] font-light">
+                  Save time by getting the core ideas from the best books.
+                </div>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <div className="flex justify-center mb-2 text-[#032b41]">
+                  <AiFillBulb className="w-[60px] h-[60px]" />
+                </div>
+                <div className="text-2xl text-[#032b41] mb-4 font-medium">
+                  Find your next read
+                </div>
+                <div className="text-lg text-[#394547] font-light">
+                  Explore book lists and personalized recommendations.
+                </div>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <div className="flex justify-center mb-2 text-[#032b41]">
+                  <AiFillAudio className="w-[60px] h-[60px]" />
+                </div>
+                <div className="text-2xl text-[#032b41] mb-4 font-mediume">
+                  Briefcasts
+                </div>
+                <div className="text-lg text-[#394547] font-light">
+                  Gain valuable insights from briefcasts
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-20 mb-24">
+              <div className="flex w-full flex-col justify-center">
+                <div className="mb-4 text-[32px] font-medium text-[#6b757b]">
+                  Enhance your knowledge
+                </div>
+                <div className="mb-4 text-[32px] font-medium text-[#6b757b]">
+                  Achieve greater success
+                </div>
+                <div className="mb-4 text-[32px] font-medium text-[#6b757b]">
+                  Improve your health
+                </div>
+                <div className="mb-4 text-[32px] font-medium text-[#6b757b]">
+                  Develop better parenting skills
+                </div>
+                <div className="mb-4 text-[32px] font-medium text-[#6b757b]">
+                  Increase happiness
+                </div>
+                <div className="text-[32px] font-medium text-[#6b757b]">
+                  Be the best version of yourself!
+                </div>
+              </div>
+
+              <div className="flex w-full flex-col justify-center gap-6 bg-[#f1f6f4] px-6 py-10">
+                <div className="flex gap-4">
+                  <div className="mt-1 text-xl font-semibold text-[#0365f2]">
+                    93%
+                  </div>
+                  <div className="text-xl font-light text-[#394547]">
+                    of Summarist members <b>significantly increase</b> reading
+                    frequency.
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="mt-1 text-xl font-semibold text-[#0365f2]">
+                    96%
+                  </div>
+                  <div className="text-xl font-light text-[#394547]">
+                    of Summarist members <b>establish better</b> habits.
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="mt-1 text-xl font-semibold text-[#0365f2]">
+                    90%
+                  </div>
+                  <div className="text-xl font-light text-[#394547]">
+                    have made <b>significant positive</b> change to their lives.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-20">
+              <div className="flex w-full flex-col justify-center gap-6 bg-[#f1f6f4] px-6 py-10">
+                <div className="flex gap-4">
+                  <div className="mt-1 text-xl font-semibold text-[#0365f2]">
+                    91%
+                  </div>
+                  <div className="text-xl font-light text-[#394547]">
+                    of Summarist members <b>report feeling more productive</b>{" "}
+                    after incorporating the service into their daily routine.
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="mt-1 text-xl font-semibold text-[#0365f2]">
+                    94%
+                  </div>
+                  <div className="text-xl font-light text-[#394547]">
+                    of Summarist members have <b>noticed an improvement</b> in
+                    their overall comprehension and retention of information.
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="mt-1 text-xl font-semibold text-[#0365f2]">
+                    88%
+                  </div>
+                  <div className="text-xl font-light text-[#394547]">
+                    of Summarist members <b>feel more informed</b> about current
+                    events and industry trends since using the platform.
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex w-full flex-col items-end justify-center">
+                <div className="mb-4 text-[32px] font-medium text-[#6b757b]">
+                  Expand your learning
+                </div>
+                <div className="mb-4 text-[32px] font-medium text-[#6b757b]">
+                  Accomplish your goals
+                </div>
+                <div className="mb-4 text-[32px] font-medium text-[#6b757b]">
+                  Strengthen your vitality
+                </div>
+                <div className="mb-4 text-[32px] font-medium text-[#6b757b]">
+                  Become a better caregiver
+                </div>
+                <div className="mb-4 text-[32px] font-medium text-[#6b757b]">
+                  Improve your mood
+                </div>
+                <div className="text-[32px] font-medium text-[#6b757b]">
+                  Maximize your abilities
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="w-full max-w-[1070px] mx-auto px-6">
+          <div className="w-full py-10">
+            <h2 className="mb-8 text-center text-[32px] font-bold text-[#032b41]">
+              What our members say
+            </h2>
+
+            <div className="max-w-[600px] mx-auto">
+              <div className="bg-[#fff3d7] p-4 mb-8 rounded font-light">
+                <div className="flex gap-2 mb-2 text-[#032b41]">
+                  <div>Hanna M.</div>
+                  <div className="flex">
+                    <BsStarFill className="w-4 h-4 fill-[#0564f1]" />
+                  </div>
+                </div>
+                <div className="text-[#394547] tracking-[0.3px] leading-[1.4]">
+                  This app has been a <b>game-changer</b> for me! It&apos;s
+                  saved me so much time and effort in reading and comprehending
+                  books. Highly recommend it to all book lovers.
+                </div>
+              </div>
+              <div className="max-w-[600px] mx-auto">
+                <div className="bg-[#fff3d7] p-4 mb-8 rounded font-light">
+                  <div className="flex gap-2 mb-2 text-[#032b41]">
+                    <div>David B.</div>
+                    <div className="flex">
+                      <BsStarFill className="w-4 h-4 fill-[#0564f1]" />
+                    </div>
+                  </div>
+                  <div className="text-[#394547] tracking-[0.3px] leading-[1.4]">
+                    I love this app! It provides{" "}
+                    <b>concise and accurate summaries</b> of books in a way that
+                    is easy to understand. It's also very user-friendly and
+                    intuitive.
+                  </div>
+                </div>
+                <div className="max-w-[600px] mx-auto">
+                  <div className="bg-[#fff3d7] p-4 mb-8 rounded font-light">
+                    <div className="flex gap-2 mb-2 text-[#032b41]">
+                      <div>Nathan S.</div>
+                      <div className="flex">
+                        <BsStarFill className="w-4 h-4 fill-[#0564f1]" />
+                      </div>
+                    </div>
+                    <div className="text-[#394547] tracking-[0.3px] leading-[1.4]">
+                      This app is a great way to get the main takeaways from a
+                      book without having to read the entire thing.
+                      <b>The summaries are well-written and informative. </b>
+                      Definitely worth downloading.
+                    </div>
+                  </div>
+                  <div className="max-w-[600px] mx-auto">
+                    <div className="bg-[#fff3d7] p-4 mb-8 rounded font-light">
+                      <div className="flex gap-2 mb-2 text-[#032b41]">
+                        <div>Ryan R.</div>
+                        <div className="flex">
+                          <BsStarFill className="w-4 h-4 fill-[#0564f1]" />
+                        </div>
+                      </div>
+                      <div className="text-[#394547] tracking-[0.3px] leading-[1.4]">
+                        If you're a busy person who{" "}
+                        <b>loves reading but doesn't have the time</b> to read
+                        every book in full, this app is for you! The summaries
+                        are thorough and provide a great overview of the book's
+                        content.
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-center">
+                    <button className="flex h-10 w-full max-w-[300px] min-w-[180px] items-center justify-center rounded bg-[#2bd97c] text-[#032b41] transition-colors duration-200 hover:bg-[#20ba68] active:translate-y-px">
+                      Login
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <section>
+                <div className="w-full py-10">
+                  <div className="w-full max-w-[1070px] mx-auto px-6">
+                    <h2 className="mb-8 text-center text-[32px] font-bold text-[#032b41]">
+                      Start growing with Summarist now
+                    </h2>
+
+                    <div className="grid grid-cols-3 gap-10">
+                      <div className="flex flex-col items-center rounded-xl bg-[#d7e9ff] p-6 pb-10 text-center">
+                        <div className="flex h-[60px] items-center gap-1">
+                          <BiCrown className="h-12 w-12 text-[#0365f2]" />
+                        </div>
+
+                        <div className="mb-4 text-[40px] font-semibold text-[#032b41]">
+                          3 Million
+                        </div>
+
+                        <div className="font-light text-[#394547]">
+                          Downloads on all platforms
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col items-center rounded-xl bg-[#d7e9ff] p-6 pb-10 text-center">
+                        <div className="flex h-[60px] items-center gap-1 text-[#0365f2]">
+                          <BsStarFill className="h-5 w-5" />
+                          <BsStarHalf className="h-5 w-5" />
+                        </div>
+
+                        <div className="mb-4 text-[40px] font-semibold text-[#032b41]">
+                          4.5 Stars
+                        </div>
+
+                        <div className="font-light text-[#394547]">
+                          Average ratings on iOS and Google Play
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col items-center rounded-xl bg-[#d7e9ff] p-6 pb-10 text-center">
+                        <div className="flex h-[60px] items-center gap-1">
+                          <RiLeafLine className="h-12 w-12 text-[#0365f2]" />
+                        </div>
+
+                        <div className="mb-4 text-[40px] font-semibold text-[#032b41]">
+                          97%
+                        </div>
+
+                        <div className="font-light text-[#394547]">
+                          Of Summarist members create a better reading habit
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <footer className="bg-[#f1f6f4]">
+                <div className="w-full py-10">
+                  <div className="w-full max-w-[1070px] mx-auto px-6">
+                    <div className="relative flex justify-between text-sm mt-8 mb-16">
+                      <div>
+                        <div className="mb-4 text-lg font-semibold text-[#032b41]">
+                          Actions
+                        </div>
+
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Summarist Magazine
+                        </div>
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Cancel Subscription
+                        </div>
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Help
+                        </div>
+                        <div className="leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Contact us
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="mb-4 text-lg font-semibold text-[#032b41]">
+                          Useful Links
+                        </div>
+
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Pricing
+                        </div>
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Summarist Business
+                        </div>
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Gift Cards
+                        </div>
+                        <div className="leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Authors & Publishers
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="mb-4 text-lg font-semibold text-[#032b41]">
+                          Company
+                        </div>
+
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          About
+                        </div>
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Careers
+                        </div>
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Partners
+                        </div>
+                        <div className="leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Code of Conduct
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="mb-4 text-lg font-semibold text-[#032b41]">
+                          Other
+                        </div>
+
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Sitemap
+                        </div>
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Legal Notice
+                        </div>
+                        <div className="mb-3 leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Terms of Service
+                        </div>
+                        <div className="leading-none text-sm text-[#394547] cursor-not-allowed">
+                          Privacy Policies
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-center">
+                      <div className="font-medium text-[#032b41]">
+                        Copyright © 2023 Summarist.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
