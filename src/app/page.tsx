@@ -26,7 +26,7 @@ export default function Home() {
 
       <section>
         <div className="flex">
-          <div className="w-full max-w-[1070px] mx-auto px-6 md:px-12">
+          <div className="w-1/2 px-6 md:px-12">
             <h1 className="text-[40px] font-bold text-[#032b41] mb-6 md:text-[24px]">
               Gain more knowledge <br />
               in less time
