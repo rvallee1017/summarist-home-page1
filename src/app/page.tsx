@@ -65,7 +65,7 @@ export default function Home() {
       <section>
         <div className="w-full py-10">
           <div className="w-full max-w-[1070px] mx-auto px-6">
-            <h2 className="mb-8 text-center text-[32px] font-bold text-[#032b41] md:font-[24px]">
+            <h2 className="mb-8 text-center text-[32px] font-bold text-[#032b41] md:text-[24px]">
               Understand books in few minutes
             </h2>
             <div className="grid grid-cols-3 gap-10 mb-24 md:grid-cols-1">
@@ -73,10 +73,10 @@ export default function Home() {
                 <div className="flex justify-center mb-2 text-[#032b41]">
                   <AiFillFileText className="w-[60px] h-[60px] md:w-12 md:h-12" />
                 </div>
-                <div className="text-2xl text-[#032b41] mb-4 font-medium md:font-[20px]">
+                <div className="text-2xl text-[#032b41] mb-4 font-medium md:text-[20px]">
                   Read or listen
                 </div>
-                <div className="text-lg text-[#394547] font-light md:font-[14px]">
+                <div className="text-lg text-[#394547] font-light md:text-[14px]">
                   Save time by getting the core ideas from the best books.
                 </div>
               </div>
@@ -84,10 +84,10 @@ export default function Home() {
                 <div className="flex justify-center mb-2 text-[#032b41]">
                   <AiFillBulb className="w-[60px] h-[60px] md:w-12 md:h-12" />
                 </div>
-                <div className="text-2xl text-[#032b41] mb-4 font-medium md:font-[20px]">
+                <div className="text-2xl text-[#032b41] mb-4 font-medium md:text-[20px]">
                   Find your next read
                 </div>
-                <div className="text-lg text-[#394547] font-light md:font-[14px]">
+                <div className="text-lg text-[#394547] font-light md:text-[14px]">
                   Explore book lists and personalized recommendations.
                 </div>
               </div>
@@ -95,10 +95,10 @@ export default function Home() {
                 <div className="flex justify-center mb-2 text-[#032b41]">
                   <AiFillAudio className="w-[60px] h-[60px] md:w-12 md:h-12" />
                 </div>
-                <div className="text-2xl text-[#032b41] mb-4 font-mediume md:font-[20px]">
+                <div className="text-2xl text-[#032b41] mb-4 font-mediume md:text-[20px]">
                   Briefcasts
                 </div>
-                <div className="text-lg text-[#394547] font-light md:font-[14px]">
+                <div className="text-lg text-[#394547] font-light md:text-[14px]">
                   Gain valuable insights from briefcasts
                 </div>
               </div>
@@ -130,7 +130,7 @@ export default function Home() {
                   <div className="mt-1 text-xl font-semibold text-[#0365f2]">
                     93%
                   </div>
-                  <div className="text-xl font-light text-[#394547] md:font-[16px]">
+                  <div className="text-xl font-light text-[#394547] md:text-[16px]">
                     of Summarist members <b>significantly increase</b> reading
                     frequency.
                   </div>
@@ -139,7 +139,7 @@ export default function Home() {
                   <div className="mt-1 text-xl font-semibold text-[#0365f2]">
                     96%
                   </div>
-                  <div className="text-xl font-light text-[#394547] md:font-[16px]">
+                  <div className="text-xl font-light text-[#394547] md:text-[16px]">
                     of Summarist members <b>establish better</b> habits.
                   </div>
                 </div>
@@ -147,7 +147,7 @@ export default function Home() {
                   <div className="mt-1 text-xl font-semibold text-[#0365f2]">
                     90%
                   </div>
-                  <div className="text-xl font-light text-[#394547] md:font-[16px]">
+                  <div className="text-xl font-light text-[#394547] md:text-[16px]">
                     have made <b>significant positive</b> change to their lives.
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export default function Home() {
                   <div className="mt-1 text-xl font-semibold text-[#0365f2]">
                     91%
                   </div>
-                  <div className="text-xl font-light text-[#394547] md:font-[16px]">
+                  <div className="text-xl font-light text-[#394547] md:text-[16px]">
                     of Summarist members <b>report feeling more productive</b>{" "}
                     after incorporating the service into their daily routine.
                   </div>
@@ -169,7 +169,7 @@ export default function Home() {
                   <div className="mt-1 text-xl font-semibold text-[#0365f2]">
                     94%
                   </div>
-                  <div className="text-xl font-light text-[#394547] md:font-[16px]">
+                  <div className="text-xl font-light text-[#394547] md:text-[16px]">
                     of Summarist members have <b>noticed an improvement</b> in
                     their overall comprehension and retention of information.
                   </div>
@@ -179,7 +179,7 @@ export default function Home() {
                   <div className="mt-1 text-xl font-semibold text-[#0365f2]">
                     88%
                   </div>
-                  <div className="text-xl font-light text-[#394547] md:font-[16px]">
+                  <div className="text-xl font-light text-[#394547] md:text-[16px]">
                     of Summarist members <b>feel more informed</b> about current
                     events and industry trends since using the platform.
                   </div>
@@ -213,7 +213,7 @@ export default function Home() {
       <section>
         <div className="w-full max-w-[1070px] mx-auto px-6">
           <div className="w-full py-10">
-            <h2 className="mb-8 text-center text-[32px] font-bold text-[#032b41] md:font-[24px]">
+            <h2 className="mb-8 text-center text-[32px] font-bold text-[#032b41] md:text-[24px]">
               What our members say
             </h2>
 
@@ -225,7 +225,7 @@ export default function Home() {
                     <BsStarFill className="w-4 h-4 fill-[#0564f1]" />
                   </div>
                 </div>
-                <div className="text-[#394547] tracking-[0.3px] leading-[1.4] md:font-[14px]">
+                <div className="text-[#394547] tracking-[0.3px] leading-[1.4] md:text-[14px]">
                   This app has been a <b>game-changer</b> for me! It&apos;s
                   saved me so much time and effort in reading and comprehending
                   books. Highly recommend it to all book lovers.
@@ -238,7 +238,7 @@ export default function Home() {
                       <BsStarFill className="w-4 h-4 fill-[#0564f1]" />
                     </div>
                   </div>
-                  <div className="text-[#394547] tracking-[0.3px] leading-[1.4] md:font-[14px]">
+                  <div className="text-[#394547] tracking-[0.3px] leading-[1.4] md:text-[14px]">
                     I love this app! It provides{" "}
                     <b>concise and accurate summaries</b> of books in a way that
                     is easy to understand. It's also very user-friendly and
@@ -252,7 +252,7 @@ export default function Home() {
                         <BsStarFill className="w-4 h-4 fill-[#0564f1]" />
                       </div>
                     </div>
-                    <div className="text-[#394547] tracking-[0.3px] leading-[1.4] md:font-[14px]">
+                    <div className="text-[#394547] tracking-[0.3px] leading-[1.4] md:text-[14px]">
                       This app is a great way to get the main takeaways from a
                       book without having to read the entire thing.
                       <b>The summaries are well-written and informative. </b>
@@ -266,7 +266,7 @@ export default function Home() {
                           <BsStarFill className="w-4 h-4 fill-[#0564f1]" />
                         </div>
                       </div>
-                      <div className="text-[#394547] tracking-[0.3px] leading-[1.4] md:font-[14px]">
+                      <div className="text-[#394547] tracking-[0.3px] leading-[1.4] md:text-[14px]">
                         If you're a busy person who{" "}
                         <b>loves reading but doesn't have the time</b> to read
                         every book in full, this app is for you! The summaries
@@ -296,7 +296,7 @@ export default function Home() {
                           <BiCrown className="h-12 w-12 text-[#0365f2]" />
                         </div>
 
-                        <div className="mb-4 text-[40px] font-semibold text-[#032b41] md:font-[32px]">
+                        <div className="mb-4 text-[40px] font-semibold text-[#032b41] md:text-[32px]">
                           3 Million
                         </div>
 
@@ -314,11 +314,11 @@ export default function Home() {
                           <BsStarHalf className="h-5 w-5" />
                         </div>
 
-                        <div className="mb-4 text-[40px] font-semibold text-[#032b41] md:font-[32px]">
+                        <div className="mb-4 text-[40px] font-semibold text-[#032b41] md:text-[32px]">
                           4.5 Stars
                         </div>
 
-                        <div className="font-light text-[#394547] md:font-[14px]">
+                        <div className="font-light text-[#394547] md:text-[14px]">
                           Average ratings on iOS and Google Play
                         </div>
                       </div>
@@ -328,11 +328,11 @@ export default function Home() {
                           <RiLeafLine className="h-12 w-12 text-[#0365f2]" />
                         </div>
 
-                        <div className="mb-4 text-[40px] font-semibold text-[#032b41] md:font-[32px]">
+                        <div className="mb-4 text-[40px] font-semibold text-[#032b41] md:text-[32px]">
                           97%
                         </div>
 
-                        <div className="font-light text-[#394547] md:font-[14px]">
+                        <div className="font-light text-[#394547] md:text-[14px]">
                           Of Summarist members create a better reading habit
                         </div>
                       </div>
