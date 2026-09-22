@@ -125,7 +125,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex w-full md:flex-col justify-center gap-6 bg-[#f1f6f4] px-6 py-10">
+              <div className="flex w-full md:flex-col justify-center gap-6 bg-[#f1f6f4] px-6 py-10 md:order-1">
                 <div className="flex gap-4">
                   <div className="mt-1 text-xl font-semibold text-[#0365f2]">
                     93%
@@ -154,7 +154,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex gap-20">
-              <div className="flex w-full md:flex-col justify-center gap-6 bg-[#f1f6f4] px-6 py-10 md:order-1">
+              <div className="flex w-full md:flex-col justify-center gap-6 bg-[#f1f6f4] px-6 py-10 md:order-1 flex-row-reverse">
                 <div className="flex gap-4">
                   <div className="mt-1 text-xl font-semibold text-[#0365f2]">
                     91%
@@ -186,7 +186,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex w-full md:flex-col items-end justify-center md:items-flex">
+              <div className="flex w-full md:flex-col justify-center md:items-flex flex-row-reverse">
                 <div className="mb-4 text-[32px] font-medium text-[#6b757b] md:text-[24px]">
                   Expand your learning
                 </div>
