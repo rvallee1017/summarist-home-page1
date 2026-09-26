@@ -73,3 +73,5 @@ function MyLibrary() {
           </div>
           </div>
 }
+
+export default MyLibrary
