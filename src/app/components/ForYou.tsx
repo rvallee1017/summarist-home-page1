@@ -19,7 +19,8 @@ function ForYou() {
               </div>
             </div>
           </div>
-          <div className="opacity-0 pointer-events-none fixed top-0 right-0 w-full h-full bg-[#3a4649] transition-opacity duration-[400ms] ease-[ease] delay-0 z-10">
+          </div>
+          <div className="opacity-0 pointer-events-none fixed top-0 right-0 w-full h-full bg-[#3a4649] transition-opacity duration-[400ms] ease-[ease] delay-0 z-10"></div>
             <div className="bg-[#f7faf9] w-[200px] min-w-[200px] fixed top-0 left-0 h-screen z-1000 transition-all duration-[300ms] md:transform-x-full">
               <div className="flex items-center justify-center h-[60px] pt-4 max-width-[160px] m-0">
                 <img
@@ -79,6 +80,8 @@ function ForYou() {
                       </div>
                     </div>
                   </div>
+                </div>
+                </div>
                 </div>
                 <div className="max-width-[1070px] w-full m-auto px-0 py-6">
                   <div className="p-[40px] w-full">
@@ -512,10 +515,6 @@ function ForYou() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
