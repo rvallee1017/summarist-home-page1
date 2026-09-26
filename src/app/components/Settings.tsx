@@ -1,6 +1,7 @@
 function Settings() {
   return (
-    <div className="ml-0 w-full">
+    <div className="relative flex flex col ml-[200px] w-[calc(100%-200px)] transition-all duration-300ms">
+      <div className="ml-0 w-full">
       <div className="bg-[#fff] border-b-border-[#e1e7ea] h-[80px] z-1">
         <div className="relative flex items-center justify-between py-0 px-8 max-w-[1070px] h-full">
           <div className="flex items-center gap-6 max-w-[340px] w-full">
@@ -94,6 +95,8 @@ function Settings() {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }
 
