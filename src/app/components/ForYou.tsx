@@ -1,7 +1,7 @@
 function ForYou() {
   return (
     <div className="box-border">
-      <div className="relative flex flex-col transition-all duration-300 md:max-w-full">
+      <div className="relative flex flex-col transition-all duration-300 md:max-w-full ml-[200px]">
         <div className="bg-[#fff] border-b border-[#e1e7ea] h-[80px] z-1">
           <div className="relative flex items-center justify-between p-5 max-width-[1070px] m-auto h-full">
             <figure>
@@ -22,8 +22,8 @@ function ForYou() {
         </div>
         <div className="opacity-0 pointer-events-none fixed top-0 right-0 w-full h-full bg-[#3a4649] transition-opacity duration-[400ms] ease-[ease] delay-0 z-10"></div>
         <div className="bg-[#f7faf9] w-[200px] min-w-[200px] fixed top-0 left-0 h-screen z-1000 transition-all duration-[300ms] md:transform-x-full">
-          <div className="flex items-center justify-center h-[60px] pt-4 max-width-[160px] m-0">
-            <img className="w-full h-[40px]" src="/logo.png" alt="Logo"></img>
+          <div className="flex items-center justify-center h-[60px] pt-4 max-width-[160px] m-auto">
+            <img className="w-full h-[40px]" src="/assets/logo.png" alt="Logo"></img>
           </div>
           <div className="flex flex-col justify-between h-[60px]">
             <div className="flex-1-1 mt-[40px]">
