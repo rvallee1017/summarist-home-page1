@@ -11,7 +11,7 @@ function ForYou() {
               <div className="flex items-center w-full justify-end">
                 <div className="relative gap-2">
                   <div>
-                    <input className="h-10 w-full p-4 outline-none bg-[#f1f6f4] text-[#042330] border-2px rounded lg"></input>
+                    <input className="h-10 w-full p-4 outline-none bg-[#f1f6f4] text-[#042330] border-2px rounded lg" placeholder="Search for books" type="text"></input>
                     <div className="flex items-center absolute h-full right-8px justify-end border-1-2 border-[#e1e7ea] p-2"></div>
                   </div>
                 </div>

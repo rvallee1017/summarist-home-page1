@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Roboto } from "next/font/local";
+import localFont from "next/font/local";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+const roboto = localFont({
+  src: "./fonts/Roboto.ttf",
+  weight: "100 900",
 });
 
 

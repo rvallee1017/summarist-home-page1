@@ -7,7 +7,7 @@ function Settings() {
           <div className="flex items-center gap-6 max-w-[340px] w-full">
             <div className="flex items-center w-full">
               <div className="relative gap-2">
-                <input className="h-[40px] w-full py-0 px-4 outline-0 bg-[#f1f6f4] text-[#042330] border-2-border-[#e1e7ea] rounded-lg"></input>
+                <input className="h-[40px] w-full py-0 px-4 outline-0 bg-[#f1f6f4] text-[#042330] border-2-border-[#e1e7ea] rounded-lg" placeholder="Search for books" type="text"></input>
                 <div className="flex items-center absolute h-full right-2 justify-end border-l-border-[#e1e7ea] pl-2"></div>
               </div>
             </div>
