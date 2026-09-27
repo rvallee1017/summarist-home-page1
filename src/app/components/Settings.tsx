@@ -16,11 +16,11 @@ function Settings() {
         </div>
       </div>
       <div className="opacity-0 fixed t-0 l-0 w-full h-full bg-[#3a4649] transition-opacity duration-[400ms] ease-[ease] delay-0 z-10"></div>
-      <div className="bg-[#f7faf9] w-[200px] min-w-[200px] fixed t-0 l-0 h-screen z-1000 transition-all duartion-[300ms]">
+      <div className="bg-[#f7faf9] w-[200px] min-w-[200px] fixed top-0 left-0 h-screen z-1000 transition-all duration-[300ms]">
         <div className="flex items-center justify-center h-[60px] pt-4 max-w-[160px] m-auto">
           <img className="w-full h-[40px]" src="/assets/logo.png"></img>
         </div>
-        <div className="hidden md:block bg-[#f7faf9] w-[200px] fixed top-0 left-0 h-screen">
+        <div className="bg-[#f7faf9] w-full">
           <div className="flex-1-1 mt-[40px]">
             <a
               className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
@@ -43,10 +43,10 @@ function Settings() {
                 <div className="flex items-center justify-center mr-2"></div>
                   <div>Highlights</div>
                 </div>
-                <div className="mb-2 cursor-not-allowed flex item-center h-[56px] text-[#032b41]">
-                  <div className="flex items-center justify-center mr-2"></div>
-                  <div>Search</div>
-                </div>
+                 <div className="mb-2 cursor-not-allowed flex item-center h-[56px] text-[#032b41]">
+                   <div className="flex items-center justify-center mr-2"></div>
+                   <div>Search</div>
+                 </div>
              
               <div className="m-0 p-0 border-box block">
                 <a
