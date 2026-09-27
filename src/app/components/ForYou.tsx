@@ -101,7 +101,7 @@ function ForYou() {
             </div>
           </div>
         </div>
-        <div className="max-w-[75%] items-center justify-center m-auto px-0 py-6">
+        <div className="max-w-[75%] items-center justify-center m-auto max-w-[1070px] px-4 py-6">
           <div className="p-[40px] w-full">
             <div className="m-0 p-0 border-box">
               <div className="text-[22px] font-bold text-[#032b41] mb-4">
