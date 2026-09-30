@@ -11,10 +11,13 @@ export default function SearchBar() {
   const searchRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  // Close dropdown when clicking outside the search component
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     };
@@ -22,66 +25,27 @@ export default function SearchBar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Fetch search results from API as query changes
+  // Fetch search results from API
   useEffect(() => {
-  // Only search if 2 or more characters are entered
-  if (searchQuery.trim().length < 2) {
-    setSearchResults([]);
-    setIsDropdownOpen(false);
-    setIsLoading(false);
-    return;
-  }
-
-  setIsLoading(true);
-  const controller = new AbortController();
-
-  const fetchSearchResults = async () => {
-    try {
-      const response = await fetch(
-        `https://us-central1-summaristt.cloudfunctions.net/getBooks?search=${encodeURIComponent(
-          searchQuery.trim()
-        )}`,
-        { signal: controller.signal }
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP status ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log("Search API results:", data);
-      setSearchResults(Array.isArray(data) ? data : []);
-      setIsDropdownOpen(true);
-    } catch (error: any) {
-      if (error.name !== "AbortError") {
-        console.error("Error searching books:", error);
-        setSearchResults([]);
-      }
-    } finally {
-      if (!controller.signal.aborted) {
-        setIsLoading(false);
-      }
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      setIsDropdownOpen(false);
+      setIsLoading(false);
+      return;
     }
-  };
 
-  const timer = setTimeout(() => {
-    fetchSearchResults();
-  }, 400); // 400ms debounce
-
-  return () => {
-    clearTimeout(timer);
-    controller.abort(); // Cancel previous fetch if input changes
-  };
-}, [searchQuery]);
+    setIsLoading(true);
 
     const fetchSearchResults = async () => {
-      setIsLoading(true);
       try {
         const response = await fetch(
-          `https://us-central1-summaristt.cloudfunctions.net/getBooks?search=${searchQuery}`
+          `https://us-central1-summaristt.cloudfunctions.net/getBooksByAuthorOrTitle?search=${encodeURIComponent(
+            searchQuery.trim()
+          )}`
         );
+
         const data = await response.json();
-        console.log("Search API data:", data);
+        console.log("Search API results:", data);
         setSearchResults(Array.isArray(data) ? data : []);
         setIsDropdownOpen(true);
       } catch (error) {
@@ -94,7 +58,7 @@ export default function SearchBar() {
 
     const timer = setTimeout(() => {
       fetchSearchResults();
-    }, 300); // 300ms debounce to prevent firing on every keystroke
+    }, 300); // 300ms debounce as specified in instructions
 
     return () => clearTimeout(timer);
   }, [searchQuery]);
@@ -117,7 +81,9 @@ export default function SearchBar() {
       {isDropdownOpen && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg max-h-[360px] overflow-y-auto z-50">
           {isLoading ? (
-            <div className="p-4 text-center text-sm text-gray-500">Searching...</div>
+            <div className="p-4 text-center text-sm text-gray-500">
+              Searching...
+            </div>
           ) : searchResults.length > 0 ? (
             searchResults.map((book) => (
               <div
@@ -127,12 +93,12 @@ export default function SearchBar() {
                   setSearchQuery("");
                   router.push(`/book/${book.id}`);
                 }}
-                className="flex items-center gap-3 p-3 hover:bg-[#f1f6f4] cursor-pointer border-b last:border-b-0 transition-colors"
+                className="flex items-center gap-3 p-3 hover:bg-[#f1f6f4] cursor-pointer border-b last:border-b-0 transition-colors text-left"
               >
                 <img
                   src={book.imageLink}
                   alt={book.title}
-                  className="w-10 h-14 object-cover rounded"
+                  className="w-10 h-14 object-cover rounded flex-shrink-0"
                 />
                 <div className="flex flex-col overflow-hidden">
                   <span className="text-sm font-semibold text-[#032b41] truncate">
