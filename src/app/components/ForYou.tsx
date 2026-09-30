@@ -14,35 +14,73 @@ import {
   FiLogOut,
 } from "react-icons/fi";
 
-
-
 function ForYou() {
   const router = useRouter();
   const [selectedBook, setSelectedBook] = useState<any>(null);
+  const [recommendedBook, setRecommendedBook] = useState<any>(null);
+  const [suggestedBook, setSuggestedBook] = useState<any>(null);
 
-useEffect(() => {
-  const fetchSelectedBook = async () => {
-    try {
-      const response = await fetch(
-        "https://us-central1-summaristt.cloudfunctions.net/getBooks?status=selected"
-      );
+  useEffect(() => {
+    const fetchSelectedBook = async () => {
+      try {
+        const response = await fetch(
+          "https://us-central1-summaristt.cloudfunctions.net/getBooks?status=selected",
+        );
 
-      const data = await response.json();
-      setSelectedBook(data[0]);
+        const data = await response.json();
+        setSelectedBook(data[0]);
 
-      console.log("Selected Book:", data);
-    } catch (error) {
-      console.error("Error fetching selected book:", error);
-    }
+        console.log("Selected Book:", data);
+      } catch (error) {
+        console.error("Error fetching selected book:", error);
+      }
+    };
+
+    fetchSelectedBook();
+  }, []);
+
+  useEffect(() => {
+    const fetchSuggestedBook = async () => {
+      try {
+        const response = await fetch(
+          "https://us-central1-summaristt.cloudfunctions.net/getBooks?status=suggested",
+        );
+
+        const data = await response.json();
+        setSuggestedBook(data[0]);
+
+        console.log("Suggested Book:", data);
+      } catch (error) {
+        console.error("Error fetching suggested book:", error);
+      }
+    };
+
+    fetchSuggestedBook();
+  }, []);
+
+  useEffect(() => {
+    const fetchRecommendedBook = async () => {
+      try {
+        const response = await fetch(
+          "https://us-central1-summaristt.cloudfunctions.net/getBooks?status=recommended",
+        );
+
+        const data = await response.json();
+        setRecommendedBook(data[0]);
+
+        console.log("Recommended Book:", data);
+      } catch (error) {
+        console.error("Error fetching recommended book:", error);
+      }
+    };
+
+    fetchRecommendedBook();
+  }, []);
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    router.push("/");
   };
-
-  fetchSelectedBook();
-}, []);
-
-const handleLogout = async () => {
-  await signOut(auth);
-  router.push("/");
-};
 
   return (
     <div className="box-border">
@@ -56,7 +94,11 @@ const handleLogout = async () => {
               <div className="flex items-center w-full justify-end">
                 <div className="relative gap-2">
                   <div>
-                    <input className="h-10 w-full p-4 outline-none bg-[#f1f6f4] text-[#042330] border-2px rounded lg" placeholder="Search for books" type="text"></input>
+                    <input
+                      className="h-10 w-full p-4 outline-none bg-[#f1f6f4] text-[#042330] border-2px rounded lg"
+                      placeholder="Search for books"
+                      type="text"
+                    ></input>
                     <div className="flex items-center absolute h-full right-8px justify-end border-1-2 border-[#e1e7ea] p-2"></div>
                   </div>
                 </div>
@@ -68,7 +110,11 @@ const handleLogout = async () => {
         <div className="opacity-0 pointer-events-none fixed top-0 right-0 w-full h-full bg-[#3a4649] transition-opacity duration-[400ms] ease-[ease] delay-0 z-10"></div>
         <div className="bg-[#f7faf9] w-[200px] min-w-[200px] fixed top-0 left-0 h-screen z-1000 transition-all duration-[300ms] md:transform-x-full">
           <div className="flex items-center justify-center h-[60px] pt-4 max-w-[160px] m-auto">
-            <img className="w-full h-[40px]" src="/assets/logo.png" alt="Logo"></img>
+            <img
+              className="w-full h-[40px]"
+              src="/assets/logo.png"
+              alt="Logo"
+            ></img>
           </div>
           <div className="flex flex-col justify-between h-[60px]">
             <div className="flex-1-1 mt-[40px]">
@@ -79,7 +125,10 @@ const handleLogout = async () => {
               >
                 <div className="bg-[#2bd97c] w-[5px] h-full mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"> <FiHome size={22} /> </div>
+                <div className="flex items-center justify-center mr-2">
+                  {" "}
+                  <FiHome size={22} />{" "}
+                </div>
 
                 <div className="m-0 p-0 box-border">For You</div>
               </a>
@@ -91,7 +140,9 @@ const handleLogout = async () => {
               >
                 <div className="w-[5px] h-full bg-transparent mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"><FiBookmark size={22} /></div>
+                <div className="flex items-center justify-center mr-2">
+                  <FiBookmark size={22} />
+                </div>
 
                 <div className="m-0 p-0 box-border">My Library</div>
               </a>
@@ -100,7 +151,9 @@ const handleLogout = async () => {
               <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
                 <div className="w-[5px] h-full bg-transparent mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"><FiEdit size={22} /></div>
+                <div className="flex items-center justify-center mr-2">
+                  <FiEdit size={22} />
+                </div>
 
                 <div className="m-0 p-0 box-border">Highlights</div>
               </div>
@@ -109,42 +162,52 @@ const handleLogout = async () => {
               <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
                 <div className="w-[5px] h-full bg-transparent mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2">< FiSearch size={22} /></div>
+                <div className="flex items-center justify-center mr-2">
+                  <FiSearch size={22} />
+                </div>
 
                 <div className="m-0 p-0 box-border">Search</div>
               </div>
 
               {/* Settings */}
               <div className="m-0 p-0 border-box block fixed bottom-[23px]">
-              <a
-                className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
-                href="/settings"
-              >
-                <div className="w-[5px] h-full bg-transparent mr-4"></div>
+                <a
+                  className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
+                  href="/settings"
+                >
+                  <div className="w-[5px] h-full bg-transparent mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"><FiSettings size={22} /></div>
+                  <div className="flex items-center justify-center mr-2">
+                    <FiSettings size={22} />
+                  </div>
 
-                <div className="m-0 p-0 box-border">Settings</div>
-              </a>
+                  <div className="m-0 p-0 box-border">Settings</div>
+                </a>
 
-              {/* Help & Support */}
-              <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
-                <div className="w-[5px] h-full bg-transparent mr-4"></div>
+                {/* Help & Support */}
+                <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
+                  <div className="w-[5px] h-full bg-transparent mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2">< FiHelpCircle size={22} /></div>
+                  <div className="flex items-center justify-center mr-2">
+                    <FiHelpCircle size={22} />
+                  </div>
 
-                <div className="m-0 p-0 box-border">Help & Support</div>
+                  <div className="m-0 p-0 box-border">Help & Support</div>
+                </div>
+
+                {/* Logout */}
+                <div className="flex items-center h-[56px] text-[#032b41] cursor-pointer">
+                  <div className="w-[5px] h-full bg-transparent mr-4"></div>
+
+                  <div className="flex items-center justify-center mr-2">
+                    <FiLogOut size={22} />
+                  </div>
+
+                  <div className="m-0 p-0 box-border" onClick={handleLogout}>
+                    Logout
+                  </div>
+                </div>
               </div>
-
-              {/* Logout */}
-              <div className="flex items-center h-[56px] text-[#032b41] cursor-pointer">
-                <div className="w-[5px] h-full bg-transparent mr-4"></div>
-
-                <div className="flex items-center justify-center mr-2"><FiLogOut size={22} /></div>
-
-                <div className="m-0 p-0 box-border" onClick={handleLogout}>Logout</div>
-              </div>
-            </div>
             </div>
           </div>
         </div>
@@ -168,10 +231,14 @@ const handleLogout = async () => {
                   <div className="h-[140px] w-[140px] min-w-[140px]">
                     <div className="flex gap-4 md:w-full ">
                       <figure className="h-[140px] w-[140px] min-w-[140px]">
-                        <img className="block" src={selectedBook?.imageLink} alt="book"></img>
+                        <img
+                          className="block"
+                          src={selectedBook?.imageLink}
+                          alt="book"
+                        ></img>
                       </figure>
                       <div className="font-semibold text-[#032b41] mb-2">
-                       {selectedBook?.title}
+                        {selectedBook?.title}
                       </div>
                       <div className="text-sm text-[#394547] mb-4">
                         {selectedBook?.author}
@@ -196,20 +263,20 @@ const handleLogout = async () => {
                 <div className="flex overflow-x-auto gap-4 snap-x mb-8">
                   <a
                     className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-width-[200px] w-full"
-                    href="/book/5bx150cz4bt"
+                    href={`/book/${recommendedBook?.id}`}
                   >
                     <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fhow-to-win-friends-and-influence-people.mp3?alt=media&amp;token=60872755-13fc-43f4-8b75-bae3fcd73991"></audio>
                     <figure className="w-[172px] h-[172px]">
                       <img
                         className="w-full h-full"
-                        src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fhow-to-win-friends-and-influence-people.png?alt=media&amp;token=099193aa-4d85-4e22-8eb7-55f12a235fe2"
+                        src={recommendedBook?.imageLink}
                       ></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                      How to Win Friends and Influence People in the Digital Age
+                      {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
-                      Dale Carnegie
+                      {recommendedBook?.author}
                     </div>
                     <div className="text-sm text-[#394547] mb-2">
                       <div className="flex gap-2">
@@ -224,20 +291,20 @@ const handleLogout = async () => {
                   </a>
                   <a
                     className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-width-[200px] w-full"
-                    href="/book/210idxm1rv"
+                    href={`/book/${recommendedBook?.id}`}
                   >
                     <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fcan't-hurt-me.mp3?alt=media&amp;token=7de57406-60ca-49d6-9113-857507f48312"></audio>
                     <figure className="w-[172px] h-[172px]">
                       <img
                         className="w-full h-full"
-                        src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fcant-hurt-me.png?alt=media&amp;token=026646b0-40f8-48c4-8d32-b69bd5b8f700"
+                        src={recommendedBook?.imageLink}
                       ></img>
                     </figure>
                     <div className="text-sm font-bold text-[#032b41] mb-2">
-                      Can't Hurt Me
+                       {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
-                      David Goggins
+                      {recommendedBook?.author}
                     </div>
                     <div className="text-sm text-[#394547] mb-4">
                       Master Your Mind and Defy the Odds
@@ -255,23 +322,23 @@ const handleLogout = async () => {
                   </a>
                   <a
                     className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-width-[200px] w-full"
-                    href="/book/4t0amyb4upc"
+                    href={`/book/${recommendedBook?.id}`}
                   >
                     <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fmastery.mp3?alt=media&amp;token=364b7c19-e9b1-4084-be0d-3a9cb5367098"></audio>
                     <figure className="w-[172px] h-[172px] mb-2">
                       <img
                         className="block w-full h-full"
-                        src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fmastery.png?alt=media&amp;token=c41aac74-9887-4536-9478-93cd983892af"
+                        src={recommendedBook?.imageLink}
                       ></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                      Mastery
+                       {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
-                      Robert Greene
+                      {recommendedBook?.author}
                     </div>
                     <div className="text-sm text-[#394547] mb-4">
-                      Myths about genius and what it really means to be great
+                      {recommendedBook?.description}
                     </div>
                     <div className="flex gap-2">
                       <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
@@ -286,24 +353,24 @@ const handleLogout = async () => {
                   </a>
                   <a
                     className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                    href="/book/g2tdej27d23"
+                    href={`/book/${recommendedBook?.id}`}
                   >
                     <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fatomic-habits.mp3?alt=media&amp;token=e9bd4ea8-044a-4c73-acac-1228e3bc50b6"></audio>
                     <figure className="w-[172px] h-[172px] mb-2">
                       <img
                         className="w-full h-full"
-                        src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fatomic_habits.png?alt=media&amp;token=51401979-e7cc-40c4-87fa-3b27d1fe761b"
+                        src={recommendedBook?.imageLink}
                         alt="book"
                       ></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                      Atomic Habits
+                       {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
-                      James Clear
+                      {recommendedBook?.author}
                     </div>
                     <div className="text-sm text-[#394547] mb-4">
-                      An Easy & Proven Way to Build Good Habits & Break Bad Ones
+                      {recommendedBook?.description}
                     </div>
                     <div className="flex gap-2">
                       <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
@@ -318,23 +385,20 @@ const handleLogout = async () => {
                   </a>
                   <a
                     className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                    href="/book/18tro3gle2p"
+                    href={`/book/${recommendedBook?.id}`}
                   >
                     <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fhow-to-talk-to-anyone.mp3?alt=media&amp;token=30173e56-fbe6-4162-8184-64d24dc480ac"></audio>
                     <figure className="w-[172px] h-[172px] mb-2">
-                      <img
-                        src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fhow-to-talk-to-anyone.png?alt=media&amp;token=48f77463-a093-42b4-8f1f-82fa4edd044c"
-                        alt="book"
-                      ></img>
+                      <img src={recommendedBook?.imageLink} alt="book"></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                      How to Talk to Anyone
+                       {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
-                      Leil Lowndes
+                      {recommendedBook?.author}
                     </div>
                     <div className="text-sm text-[#394547] mb-4">
-                      92 Little Tricks for Big Success in Relationships
+                      {recommendedBook?.description}
                     </div>
                     <div className="flex gap-2">
                       <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
@@ -349,23 +413,20 @@ const handleLogout = async () => {
                   </a>
                   <a
                     className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                    href="/book/ap153fptaq"
+                    href={`/book/${recommendedBook?.id}`}
                   >
                     <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fgood-to-great.mp3?alt=media&amp;token=c1b30865-26f7-47c5-a0f3-fd9da5d3da3d"></audio>
                     <figure className="w-[172px] h-[172px] mb-2">
-                      <img
-                        src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fgood-to-great.png?alt=media&amp;token=b906ec52-7871-411f-b5b6-53f1da98ee27"
-                        alt="book"
-                      ></img>
+                      <img src={recommendedBook?.imageLink} alt="book"></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                      Good to Great
+                       {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
-                      Jim Collins
+                      {recommendedBook?.author}
                     </div>
                     <div className="text-sm text-[#394547] mb-4">
-                      Why Some Companies Make the Leap...And Others Don't
+                      {recommendedBook?.description}
                     </div>
                     <div className="flex gap-2">
                       <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
@@ -380,23 +441,20 @@ const handleLogout = async () => {
                   </a>
                   <a
                     className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                    href="/book/2ozpy1q1pbt"
+                    href={`/book/${recommendedBook?.id}`}
                   >
                     <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-intelligent-investor.mp3?alt=media&amp;token=82429bb8-8af4-4375-bca5-e6f89e631fca"></audio>
                     <figure className="w-[172px] h-[172px] mb-2">
-                      <img
-                        src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fthe-intelligent-investor.png?alt=media&amp;token=f72f1865-de93-4c67-bd6e-55070f467923"
-                        alt="book"
-                      ></img>
+                      <img src={recommendedBook?.imageLink} alt="book"></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                      The Intelligent Investor
+                       {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
-                      Benjamin Graham
+                      {recommendedBook?.author}
                     </div>
                     <div className="text-sm text-[#394547] mb-4">
-                      The Definitive Book on Value Investing
+                      {recommendedBook?.description}
                     </div>
                     <div className="flex gap-2">
                       <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
@@ -411,25 +469,20 @@ const handleLogout = async () => {
                   </a>
                   <a
                     className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                    href="/book/cuo1z5oryy8"
+                    href={`/book/${recommendedBook?.id}`}
                   >
                     <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-4-day-week.mp3?alt=media&amp;token=6265f7a5-1dab-422d-8d22-71cdb70678a1"></audio>
                     <figure className="w-[172px] h-[172px] mb-2">
-                      <img
-                        src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fthe-4-day-week.png?alt=media&amp;token=8f468ea2-f16c-4a96-9bc3-8f66aaff33ec"
-                        alt="book"
-                      ></img>
+                      <img src={recommendedBook?.imageLink} alt="book"></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                      The 4 Day Week
+                       {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
-                      Andrew Barnes
+                      {recommendedBook?.author}
                     </div>
                     <div className="text-sm text-[#394547] mb-4">
-                      "How the flexible work revolution can increase
-                      productivity, profitability, and wellbeing, and help
-                      create a sustainable future"
+                      {recommendedBook?.description}
                     </div>
                     <div className="flex gap-2">
                       <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
@@ -454,7 +507,7 @@ const handleLogout = async () => {
             <div className="flex  overflow-x-auto gap-4 snap-x mb-5">
               <a
                 className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href="/book/6ncszvwl4e"
+                href={`/book/${suggestedBook?.id}`}
               >
                 <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fzero-to-one.mp3?alt=media&amp;token=29494cf2-2c9e-404a-bb76-c4fb2a23d8f2"></audio>
                 <figure className="w-[172px] h-[172px] mb-2">
@@ -465,13 +518,13 @@ const handleLogout = async () => {
                   ></img>
                 </figure>
                 <div className="text-base font-bold text-[#032b41]">
-                  Zero to One
+                   {suggestedBook?.title}
                 </div>
                 <div className="text-sm text-[#6b757b] font-light mb-2">
-                  Peter Thiel with Blake Masters
+                  {suggestedBook?.author}
                 </div>
                 <div className="text-sm text-[#394547] mb-2">
-                  Notes on Startups, or How to Build the Future
+                  {suggestedBook?.description}
                 </div>
                 <div className="flex gap-2">
                   <div className="flex items-center gap font-sm font-light text-[#6b757b]">
@@ -486,7 +539,7 @@ const handleLogout = async () => {
               </a>
               <a
                 className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href="/book/hyqzkhdyg7h"
+                href={`/book/${suggestedBook?.id}`}
               >
                 <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Frich-dad-poor-dad.mp3?alt=media&amp;token=e65e6fc1-b5c7-4aed-9715-07a96ec12db1"></audio>
                 <figure className="w-[172px] h-[172px] mb-2">
@@ -497,14 +550,13 @@ const handleLogout = async () => {
                   ></img>
                 </figure>
                 <div className="text-base font-bold text-[#032b41]">
-                  Rich Dad, Poor Dad
+                  {suggestedBook?.title}
                 </div>
                 <div className="text-sm text-[#6b757b] font-light mb-2">
-                  Robert T. Kiyosaki
+                  {suggestedBook?.author}
                 </div>
                 <div className="text-sm text-[#394547] mb-2">
-                  "What the Rich Teach Their Kids about Money - That the Poor
-                  and the Middle Class Do Not!"
+                  {suggestedBook?.description}
                 </div>
                 <div className="flex gap-2">
                   <div className="flex items-center gap font-sm font-light text-[#6b757b]">
@@ -519,7 +571,7 @@ const handleLogout = async () => {
               </a>
               <a
                 className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href="/book/vt4i7lvosz"
+                href={`/book/${suggestedBook?.id}`}
               >
                 <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-10x-rule.mp3?alt=media&amp;token=4638392a-ced3-4926-a8b3-1c7a4fbe520a"></audio>
                 <figure className="w-[172px] h-[172px] mb-2">
@@ -530,13 +582,13 @@ const handleLogout = async () => {
                   ></img>
                 </figure>
                 <div className="text-base font-bold text-[#032b41]">
-                  The 10X Rule
+                  {suggestedBook?.title}
                 </div>
                 <div className="text-sm text-[#6b757b] font-light mb-2">
-                  Grant Cardone
+                  {suggestedBook?.author}
                 </div>
                 <div className="text-sm text-[#394547] mb-2">
-                  The Only Difference Between Success and Failure
+                  {suggestedBook?.description}
                 </div>
                 <div className="flex gap-2">
                   <div className="flex items-center gap font-sm font-light text-[#6b757b]">
@@ -551,7 +603,7 @@ const handleLogout = async () => {
               </a>
               <a
                 className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href="/book/g80xtszllo9"
+                href={`/book/${suggestedBook?.id}`}
               >
                 <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fdeep-work.mp3?alt=media&amp;token=f1749513-05ab-4733-8675-6073ba6ac5e9"></audio>
                 <figure className="w-[172px] h-[172px] mb-2">
@@ -562,13 +614,13 @@ const handleLogout = async () => {
                   ></img>
                 </figure>
                 <div className="text-base font-bold text-[#032b41]">
-                  Deep Work
+                  {suggestedBook?.title}
                 </div>
                 <div className="text-sm text-[#6b757b] font-light mb-2">
-                  Cal Newport
+                  {suggestedBook?.author}
                 </div>
                 <div className="text-sm text-[#394547] mb-2">
-                  Rules for Focused Success in a Distracted World
+                  {suggestedBook?.description}
                 </div>
                 <div className="flex gap-2">
                   <div className="flex items-center gap font-sm font-light text-[#6b757b]">
@@ -583,7 +635,7 @@ const handleLogout = async () => {
               </a>
               <a
                 className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href="/book/6ctat6ynnzqp"
+                href={`/book/${suggestedBook?.id}`}
               >
                 <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-5-second-rule.mp3?alt=media&amp;token=9a0e621a-c545-431f-8d19-052cc445844a"></audio>
                 <figure className="w-[172px] h-[172px] mb-2">
@@ -594,14 +646,13 @@ const handleLogout = async () => {
                   ></img>
                 </figure>
                 <div className="text-base font-bold text-[#032b41]">
-                  The 5 Second Rule
+                  {suggestedBook?.title}
                 </div>
                 <div className="text-sm text-[#6b757b] font-light mb-2">
-                  Mel Robbins
+                  {suggestedBook?.author}
                 </div>
                 <div className="text-sm text-[#394547] mb-2">
-                  Transform Your Life, Work, and Confidence with Everyday
-                  Courage
+                  {suggestedBook?.description}
                 </div>
                 <div className="flex gap-2">
                   <div className="flex items-center gap font-sm font-light text-[#6b757b]">
@@ -616,7 +667,7 @@ const handleLogout = async () => {
               </a>
               <a
                 className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href="/book/pducrv7aiqr"
+                href={`/book/${suggestedBook?.id}`}
               >
                 <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-12-week-year.mp3?alt=media&amp;token=7542f2ee-eafe-44a7-9606-17f070d83af8"></audio>
                 <figure className="w-[172px] h-[172px] mb-2">
@@ -627,13 +678,13 @@ const handleLogout = async () => {
                   ></img>
                 </figure>
                 <div className="text-base font-bold text-[#032b41]">
-                  The 12 Week Year
+                  {suggestedBook?.title}
                 </div>
                 <div className="text-sm text-[#6b757b] font-light mb-2">
-                  Brian P. Moran and Michael Lennington
+                  {suggestedBook?.author}
                 </div>
                 <div className="text-sm text-[#394547] mb-2">
-                  Get More Done in 12 Weeks than Others Do in 12 Months
+                  {suggestedBook?.description}
                 </div>
                 <div className="flex gap-2">
                   <div className="flex items-center gap font-sm font-light text-[#6b757b]">
@@ -648,7 +699,7 @@ const handleLogout = async () => {
               </a>
               <a
                 className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href="/book/vdb1ghfrlt"
+                href={`/book/${suggestedBook?.id}`}
               >
                 <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fgetting-things-done.mp3?alt=media&amp;token=82466b53-7e16-4044-a79f-53bda67a39fe"></audio>
                 <figure className="w-[172px] h-[172px] mb-2">
@@ -659,13 +710,13 @@ const handleLogout = async () => {
                   ></img>
                 </figure>
                 <div className="text-base font-bold text-[#032b41]">
-                  Getting Things Done
+                  {suggestedBook?.title}
                 </div>
                 <div className="text-sm text-[#6b757b] font-light mb-2">
-                  David Allen
+                  {suggestedBook?.author}
                 </div>
                 <div className="text-sm text-[#394547] mb-2">
-                  The Art of Stress-Free Productivity
+                  {suggestedBook?.description}
                 </div>
                 <div className="flex gap-2">
                   <div className="flex items-center gap font-sm font-light text-[#6b757b]">
