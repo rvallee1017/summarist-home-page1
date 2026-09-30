@@ -1,7 +1,8 @@
 
 
 function LoginFormPage() {
-    <div className="w-full z-9999">
+    return (
+         <div className="w-full z-9999">
         <div className="relative max-w-[400px] bg-white rounded-lg shadow-[0_0_10px_rgba(0,0,0,0.2)]">
             <div className="pt-12 px-8 pb-6">
                 <div className="text-center text-[20px] font-bold text-[#032b41] mb-6">Log in to Summarist</div>
@@ -34,6 +35,7 @@ function LoginFormPage() {
             <div className="absolute top-3 right-3 flex cursor-pointer transition-opacity duration-200ms"></div>
         </div>
     </div>
-}
+    )
+   }
 
 export default LoginFormPage
