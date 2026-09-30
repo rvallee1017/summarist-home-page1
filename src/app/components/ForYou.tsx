@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import auth from "../../firebase";
@@ -17,6 +18,26 @@ import {
 
 function ForYou() {
   const router = useRouter();
+  const [selectedBook, setSelectedBook] = useState<any>(null);
+
+useEffect(() => {
+  const fetchSelectedBook = async () => {
+    try {
+      const response = await fetch(
+        "https://us-central1-summaristt.cloudfunctions.net/getBooks?status=selected"
+      );
+
+      const data = await response.json();
+      setSelectedBook(data[0]);
+
+      console.log("Selected Book:", data);
+    } catch (error) {
+      console.error("Error fetching selected book:", error);
+    }
+  };
+
+  fetchSelectedBook();
+}, []);
 
 const handleLogout = async () => {
   await signOut(auth);
@@ -136,7 +157,7 @@ const handleLogout = async () => {
               <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-lean-startup.mp3?alt=media&amp;token=c2f2b1d4-eaf2-4d47-8c8a-7a8fd062a47e"></audio>
               <a
                 className="sm:p-4 md:w-full md:flex-col md:gap-6 flex justify-between bg-[#fbefd6] rounded-sm mb-6"
-                href="/book/f9gy1gpai8"
+                href={`/book/${selectedBook?.id}`}
               >
                 <div className="md:w-full md:text-[14px] text-[#032b41]">
                   How Constant Innovation Creates Radically Successful
@@ -147,13 +168,13 @@ const handleLogout = async () => {
                   <div className="h-[140px] w-[140px] min-w-[140px]">
                     <div className="flex gap-4 md:w-full ">
                       <figure className="h-[140px] w-[140px] min-w-[140px]">
-                        <img className="block" src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fthe-lean-startup.png?alt=media&amp;token=087bb342-71d9-4c07-8b0d-4dd1f06a5aa2" alt="book"></img>
+                        <img className="block" src={selectedBook?.imageLink} alt="book"></img>
                       </figure>
                       <div className="font-semibold text-[#032b41] mb-2">
-                        The Lean Startup
+                       {selectedBook?.title}
                       </div>
                       <div className="text-sm text-[#394547] mb-4">
-                        Eric Ries
+                        {selectedBook?.author}
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="flex items-center w-[40px] min-w-[40px] h-[40px]"></div>
