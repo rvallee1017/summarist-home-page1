@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Sidebar from "../../components/Sidebar";
+import SearchBar from "../../components/SearchBar";
 
 export default function BookPage() {
   const { id } = useParams();
@@ -38,6 +39,9 @@ export default function BookPage() {
     <Sidebar />
     <div className="md:ml-[200px] px-6 py-10">
     <div className="max-w-[1000px] mx-auto">
+        <div className="border-b border-gray-200 py-3 px-6 flex items-center justify-between md:justify-end">
+        <SearchBar />
+        </div>
       <div className="flex flex-col-reverse lg:flex-row gap-12 justify-between">
         <div className="flex-1 max-w-[650px]">
           <h1 className="text-3xl font-bold mb-4">{book.title}</h1>

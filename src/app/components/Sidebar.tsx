@@ -1,104 +1,83 @@
-import React from "react";
-import {
-  FiHome,
-  FiBookmark,
-  FiEdit,
-  FiSearch,
-  FiSettings,
-  FiHelpCircle,
-  FiLogOut,
-} from "react-icons/fi";
+"use client";
+
+import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import auth from "../../firebase";
 
 export default function Sidebar() {
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+
   const handleLogout = async () => {
     await signOut(auth);
     router.push("/");
   };
+
   return (
     <>
-      <div className="opacity-0 pointer-events-none fixed top-0 right-0 w-full h-full bg-[#3a4649] transition-opacity duration-400 ease-[ease] delay-0 z-10" />
+      {/* Mobile Hamburger Button (Only shows when menu is closed) */}
+      {!isOpen && (
+        <button
+          className="md:hidden fixed top-4 left-4 z-50 p-2 text-2xl"
+          onClick={() => setIsOpen(true)}
+        >
+          ☰
+        </button>
+      )}
 
-      <div className="bg-[#f7faf9] w-50 min-w-50 fixed top-0 left-0 h-screen z-50 transition-all duration-300 md:transform-x-full">
-        <div className="flex items-center justify-center h-[60px] pt-4 max-w-[160px] m-auto">
-          <img className="w-full h-[40px]" src="/assets/logo.png" alt="Logo" />
+      {/* Dark Overlay when Mobile Menu is Open */}
+      {isOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/50 z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Sidebar Container */}
+      <div
+        className={`fixed top-0 left-0 h-full w-[200px] bg-[#f7faf9] border-r z-50 transition-transform duration-300 ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0`}
+      >
+        <div className="p-6">
+          {/* Header with Logo and Mobile Close Button */}
+          <div className="flex items-center justify-between mb-10">
+            <h2 className="text-xl font-bold text-[#032b41]">Summarist</h2>
+            <button
+              className="md:hidden text-2xl text-[#032b41]"
+              onClick={() => setIsOpen(false)}
+            >
+              ✕
+            </button>
+          </div>
+
+          <nav className="flex flex-col gap-6 font-semibold text-[#032b41]">
+            <a href="/for-you" className="flex items-center gap-3">
+              For You
+            </a>
+            <a href="#" className="flex items-center gap-3">
+              My Library
+            </a>
+            <a href="#" className="flex items-center gap-3">
+              Highlights
+            </a>
+            <a href="#" className="flex items-center gap-3">
+              Search
+            </a>
+          </nav>
         </div>
 
-        <div className="flex flex-col justify-between h-[calc(100vh-60px)]">
-          <div className="flex-1 mt-10">
-            <a
-              className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
-              href="/for-you"
-            >
-              <div className="bg-[#2bd97c] w-[5px] h-full mr-4" />
-              <div className="flex items-center justify-center mr-2">
-                <FiHome size={22} />
-              </div>
-              <div className="m-0 p-0 box-border">For You</div>
-            </a>
-
-            <a
-              className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
-              href="/library"
-            >
-              <div className="w-[5px] h-full bg-transparent mr-4" />
-              <div className="flex items-center justify-center mr-2">
-                <FiBookmark size={22} />
-              </div>
-              <div className="m-0 p-0 box-border">My Library</div>
-            </a>
-
-            <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
-              <div className="w-[5px] h-full bg-transparent mr-4" />
-              <div className="flex items-center justify-center mr-2">
-                <FiEdit size={22} />
-              </div>
-              <div className="m-0 p-0 box-border">Highlights</div>
-            </div>
-
-            <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
-              <div className="w-[5px] h-full bg-transparent mr-4" />
-              <div className="flex items-center justify-center mr-2">
-                <FiSearch size={22} />
-              </div>
-              <div className="m-0 p-0 box-border">Search</div>
-            </div>
-          </div>
-
-          <div className="mt-auto pb-6">
-            <a
-              className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
-              href="/settings"
-            >
-              <div className="w-[5px] h-full bg-transparent mr-4" />
-              <div className="flex items-center justify-center mr-2">
-                <FiSettings size={22} />
-              </div>
-              <div className="m-0 p-0 box-border">Settings</div>
-            </a>
-
-            <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
-              <div className="w-[5px] h-full bg-transparent mr-4" />
-              <div className="flex items-center justify-center mr-2">
-                <FiHelpCircle size={22} />
-              </div>
-              <div className="m-0 p-0 box-border">Help & Support</div>
-            </div>
-
-            <div
-              className="flex items-center h-[56px] text-[#032b41] cursor-pointer"
-              onClick={handleLogout}
-            >
-              <div className="w-[5px] h-full bg-transparent mr-4" />
-              <div className="flex items-center justify-center mr-2">
-                <FiLogOut size={22} />
-              </div>
-              <div className="m-0 p-0 box-border">Logout</div>
-            </div>
-          </div>
+        <div className="absolute bottom-6 left-6 flex flex-col gap-6 font-semibold text-[#032b41]">
+          <a href="#" className="flex items-center gap-3">
+            Settings
+          </a>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-3 text-left"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </>
