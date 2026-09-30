@@ -5,13 +5,15 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { auth } from "../../firebase";
+import auth from "../../firebase";
 import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 function LoginFormPage({ onClose }: { onClose: () => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,6 +22,7 @@ function LoginFormPage({ onClose }: { onClose: () => void }) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       onClose();
+      router.push("/for-you");
     } catch {
       setError("Invalid email or password.");
     }
@@ -32,8 +35,21 @@ function LoginFormPage({ onClose }: { onClose: () => void }) {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       onClose();
+      router.push("/for-you");
     } catch {
       setError("Google login failed.");
+    }
+  };
+
+  const handleGuestLogin = async () => {
+    setError("");
+
+    try {
+      await signInWithEmailAndPassword(auth, "guest@summarist.com", "guest123");
+      onClose();
+      router.push("/for-you");
+    } catch {
+      setError("Guest login failed.");
     }
   };
 
@@ -44,7 +60,11 @@ function LoginFormPage({ onClose }: { onClose: () => void }) {
           <div className="text-center text-[20px] font-bold text-[#032b41] mb-6">
             Log in to Summarist
           </div>
-          <button className="relative flex bg-[#3a579d] text-white w-full h-[40px] items-center justify-center">
+          <button
+            className="relative flex bg-[#3a579d] text-white w-full h-[40px] items-center justify-center"
+            type="button"
+            onClick={handleGuestLogin}
+          >
             <figure className="bg-transparent flex items-center w-[36px] h-[36px] rounded-sm absolute left-2"></figure>
             <div>Login as a Guest</div>
           </button>

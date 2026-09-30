@@ -1,4 +1,16 @@
+"use client";
+
+import { signOut } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import auth from "../../firebase";
+
+
 function MyLibrary() {
+  const handleLogout = async () => {
+    await signOut(auth);
+    router.push("/");
+  };
+
   return (
      <div className="relative flex flex-col ml-[200px] transition-all duration-300 md:max-w-full">
         <div className="bg-[#fff] border-b border-[#e1e7ea] h-[80px] z-1">
@@ -95,7 +107,7 @@ function MyLibrary() {
 
                 <div className="flex items-center justify-center mr-2"></div>
 
-                <div className="m-0 p-0 box-border">Logout</div>
+                <div className="m-0 p-0 box-border" onClick={handleLogout}>Logout</div>
               </div>
             </div>
           </div>

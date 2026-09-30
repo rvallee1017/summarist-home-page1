@@ -1,4 +1,16 @@
+"use client";
+
+import { signOut } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import auth from "../../firebase";
+
+
 function Settings() {
+  const handleLogout = async () => {
+    await signOut(auth);
+    router.push("/");
+    };
+
   return (
     <div className="relative flex-1 flex-col ml-[200px] transition-all duration-300ms overflow-x-hidden">
       <div className="ml-0 w-full">
@@ -65,7 +77,7 @@ function Settings() {
                 <div className="mb-0 flex items-center h-[56px] text-[#032b41] cursor-pointer">
                   <div className="w-[5px] h-full bg-transparent mr-4"></div>
                   <div className="flex items-center justify-center mr-2"></div>
-                  <div className="m-0 p-0 border-box">Logout</div>
+                  <div className="m-0 p-0 border-box" onClick={handleLogout}>Logout</div>
                 </div>
                 </div>
               </div>
