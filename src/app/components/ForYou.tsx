@@ -145,7 +145,10 @@ const handleLogout = async () => {
                 <div className="md:display-none w-px bg-[#bac8ce]"></div>
                 <div className="md:w-full flex gap-4">
                   <div className="h-[140px] w-[140px] min-w-[140px]">
-                    <div className="md:w-full">
+                    <div className="flex gap-4 md:w-full ">
+                      <figure className="h-[140px] w-[140px] min-w-[140px]">
+                        <img className="block" src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fthe-lean-startup.png?alt=media&amp;token=087bb342-71d9-4c07-8b0d-4dd1f06a5aa2" alt="book"></img>
+                      </figure>
                       <div className="font-semibold text-[#032b41] mb-2">
                         The Lean Startup
                       </div>
