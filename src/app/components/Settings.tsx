@@ -38,14 +38,14 @@ function Settings() {
               <div className="flex items-center justify-center mr-2"></div>
               <div className="m-0 p-0 border-box">My Library</div>
             </a>
-            <div className="flex items center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
+            <div className="flex items center h-[56px] text-[#032b41] pt-2 cursor-not-allowed">
               <div className="w-[5px] h-full bg-transparent mr-4"></div>
                 <div className="flex items-center justify-center mr-2"></div>
                   <div>Highlights</div>
                 </div>
-                 <div className="mb-2 cursor-not-allowed flex item-center h-[56px] text-[#032b41]">
+                 <div className="px-5 pt-2 cursor-not-allowed flex item-center h-[56px] text-[#032b41]">
                    <div className="flex items-center justify-center mr-2"></div>
-                   <div>Search</div>
+                   <div className="m-0 p-0 border-box block">Search</div>
                  </div>
              
               <div className="m-0 p-0 border-box block">
