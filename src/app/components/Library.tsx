@@ -3,9 +3,19 @@
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import auth from "../../firebase";
+import {
+  FiHome,
+  FiBookmark,
+  FiEdit,
+  FiSearch,
+  FiSettings,
+  FiHelpCircle,
+  FiLogOut,
+} from "react-icons/fi";
 
 
 function MyLibrary() {
+  const router = useRouter();
   const handleLogout = async () => {
     await signOut(auth);
     router.push("/");
@@ -33,7 +43,7 @@ function MyLibrary() {
         </div>
         <div className="opacity-0 pointer-events-none fixed top-0 right-0 w-full h-full block bg-[#3a4649] transition-opacity duration-[400ms] ease-[ease] delay-0 z-10"></div>
         <div className="bg-[#f7faf9] w-[200px] min-w-[200px] fixed top-0 left-0 h-screen z-1000 transition-all duration-[300ms] md:transform-x-full">
-          <div className="flex items-center justify-center h-[60px] pt-4 max-width-[160px] m-0">
+          <div className="flex items-center justify-center h-[60px] pt-4 max-w-[160px] m-auto">
             <img className="w-full h-[40px]" src="/assets/logo.png" alt="Logo"></img>
           </div>
           <div className="flex flex-col justify-between h-[60px]">
@@ -45,7 +55,7 @@ function MyLibrary() {
               >
                 <div className="w-[5px] h-full mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"></div>
+                <div className="flex items-center justify-center mr-2"><FiHome size={22} /></div>
 
                 <div className="m-0 p-0 box-border">For You</div>
               </a>
@@ -57,7 +67,7 @@ function MyLibrary() {
               >
                 <div className="bg-[#2bd97c] w-[5px] h-full mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"></div>
+                <div className="flex items-center justify-center mr-2"><FiBookmark size={22} /></div>
 
                 <div className="m-0 p-0 box-border">My Library</div>
               </a>
@@ -66,7 +76,7 @@ function MyLibrary() {
               <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
                 <div className="w-[5px] h-full bg-transparent mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"></div>
+                <div className="flex items-center justify-center mr-2"><FiEdit size={22} /></div>
 
                 <div className="m-0 p-0 box-border">Highlights</div>
               </div>
@@ -75,28 +85,29 @@ function MyLibrary() {
               <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
                 <div className="w-[5px] h-full bg-transparent mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"></div>
+                <div className="flex items-center justify-center mr-2">< FiSearch size={22} /></div>
 
                 <div className="m-0 p-0 box-border">Search</div>
               </div>
 
               {/* Settings */}
+              <div className="m-0 p-0 border-box block fixed bottom-[23px]">
               <a
                 className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
                 href="/settings"
               >
                 <div className="w-[5px] h-full bg-transparent mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"></div>
+                <div className="flex items-center justify-center mr-2 "><FiSettings size={22} /></div>
 
-                <div className="m-0 p-0 box-border">Settings</div>
+                <div className="m-0 p-0 box-border ">Settings</div>
               </a>
 
               {/* Help & Support */}
               <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
                 <div className="w-[5px] h-full bg-transparent mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"></div>
+                <div className="flex items-center justify-center mr-2">< FiHelpCircle size={22} /></div>
 
                 <div className="m-0 p-0 box-border">Help & Support</div>
               </div>
@@ -105,10 +116,11 @@ function MyLibrary() {
               <div className="flex items-center h-[56px] text-[#032b41] cursor-pointer">
                 <div className="w-[5px] h-full bg-transparent mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2"></div>
+                <div className="flex items-center justify-center mr-2"><FiLogOut size={22} /></div>
 
                 <div className="m-0 p-0 box-border" onClick={handleLogout}>Logout</div>
               </div>
+            </div>
             </div>
           </div>
         </div>

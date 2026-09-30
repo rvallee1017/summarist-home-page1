@@ -3,9 +3,19 @@
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import auth from "../../firebase";
+import {
+  FiHome,
+  FiBookmark,
+  FiEdit,
+  FiSearch,
+  FiSettings,
+  FiHelpCircle,
+  FiLogOut,
+} from "react-icons/fi";
 
 
 function Settings() {
+  const router = useRouter();
   const handleLogout = async () => {
     await signOut(auth);
     router.push("/");
@@ -39,7 +49,7 @@ function Settings() {
               href="/for-you"
             >
               <div className="w-[5px] h-full bg-transparent mr-4"></div>
-              <div className="flex items-center justify-center mr-2"></div>
+              <div className="flex items-center justify-center mr-2"><FiHome size={22} /></div>
               <div>For you</div>
             </a>
             <a
@@ -47,36 +57,36 @@ function Settings() {
               href="/library"
             >
               <div className="w-[5px] h-full bg-transparent mr-4"></div>
-              <div className="flex items-center justify-center mr-2"></div>
+              <div className="flex items-center justify-center mr-2"><FiBookmark size={22} /></div>
               <div className="m-0 p-0 border-box">My Library</div>
             </a>
-            <div className="flex items center h-[56px] text-[#032b41] pt-2 cursor-not-allowed">
+            <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
               <div className="w-[5px] h-full bg-transparent mr-4"></div>
-                <div className="flex items-center justify-center mr-2"></div>
-                  <div>Highlights</div>
+                <div className="flex items-center justify-center mr-2"><FiEdit size={22} /></div>
+                  <div className="m-0 p-o box-border">Highlights</div>
                 </div>
-                 <div className="px-5 pt-2 cursor-not-allowed flex item-center h-[56px] text-[#032b41]">
-                   <div className="flex items-center justify-center mr-2"></div>
+                 <div className="px-5 pt-2 cursor-not-allowed flex items-center h-[56px] text-[#032b41]">
+                   <div className="flex items-center justify-center mr-2">< FiSearch size={22} /></div>
                    <div className="m-0 p-0 border-box block">Search</div>
                  </div>
              
-              <div className="m-0 p-0 border-box block">
+              <div className="m-0 p-0 border-box block fixed bottom-[23px]">
                 <a
                   className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
                   href="/settings"
                 >
                   <div className="bg-[#2bd97c] w-[5px] h-full mr-4"></div>
-                  <div className="flex items-center justify-center mr-2"></div>
+                  <div className="flex items-center justify-center mr-2"><FiSettings size={22} /></div>
                   <div className="m-0 p-0 border-box">Settings</div>
                 </a>
                 <div className="cursor-not-allowed flex items-center h-[56px] text-[#032b41] mb-2">
                   <div className="w-[5px] h-full bg-transparent mr-4"></div>
-                  <div className="flex items-center justify-center mr-2"></div>
+                  <div className="flex items-center justify-center mr-2">< FiHelpCircle size={22} /></div>
                   <div className="m-0 p-0 border-box block">Help & Support</div>
                 </div>
                 <div className="mb-0 flex items-center h-[56px] text-[#032b41] cursor-pointer">
                   <div className="w-[5px] h-full bg-transparent mr-4"></div>
-                  <div className="flex items-center justify-center mr-2"></div>
+                  <div className="flex items-center justify-center mr-2"><FiLogOut size={22} /></div>
                   <div className="m-0 p-0 border-box" onClick={handleLogout}>Logout</div>
                 </div>
                 </div>
@@ -88,12 +98,12 @@ function Settings() {
               <div className="align-left border-b border-[#e1e7ea] text-[32px] font-bold">
                 Settings
               </div>
-              <div className="flex flex-col md:flex-row md:items-center gap-3">
+              <div className="flex flex-col gap-3">
                 <div className="text-[18px] font-bold text-[#032b41] ">
                   Your Subscription plan
                 </div>
                 <div className="text-[#032b41] border-b-border-[#e1e7ea] flex-col-1">Basic</div>
-                <a className="w-fit bg-[#2bd97c] text-[#032b41] h-[40px] rounded-sm text-base transition-bg duration-200ms flex items-center justify-center min-w-[180px] border-b border-[#e1e7ea]">
+                <a className="w-fit bg-[#2bd97c] text-[#032b41] h-[40px] rounded-sm text-base transition-bg duration-200ms flex items-center justify-center min-w-[180px] border-b border-[#e1e7ea]" href="/choose-plan">
                   Upgrade to Premium
                 </a>
               </div>
@@ -102,7 +112,7 @@ function Settings() {
                   <div className="border-b border-[#e1e7ea] pt-5"></div>
                   Email
                 </div>
-                <div className="text-[#032b41]">hanna@gmail.com</div>
+                <div className="text-[#032b41]">{auth.currentUser?.email}</div>
             </div>
           </div>
         </div>
