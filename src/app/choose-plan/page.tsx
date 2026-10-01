@@ -11,7 +11,7 @@ export default function ChoosePlan() {
                         <div className="font-bold text-[48px] mb-[40px] md:text-[26px] md:mb-[32px]">Get unlimited access to many amazing books to read</div>
                         <div className="text-[20px] mb-[32px] md:text-[16px]">Turn ordinary moments into amazing learning opportunities</div>
                         <figure className="flex justify-center max-w-[340px] m-auto rounded-[180px] overflow-hidden">
-                            <img className="w-full h-full" alt="pricing" src="/assets/pricin-top.png"></img></figure>
+                            <img className="w-full h-full" alt="pricing" src="/assets/pricing-top.png"></img></figure>
                             </div>
                             </div>
                             <div className="max-w-[1070px] w-full m-auto px-[24px]">
