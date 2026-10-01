@@ -37,7 +37,7 @@ function Settings() {
           </div>
         </div>
       </div>
-      <div className="opacity-0 fixed t-0 l-0 w-full h-full bg-[#3a4649] transition-opacity duration-[400ms] ease-[ease] delay-0 z-10"></div>
+      <div className="opacity-0 fixed t-0 l-0 w-full h-full bg-[#3a4649] transition-opacity duration-[400ms] ease-[ease] delay-0 z-10 pointer-events-none"></div>
       <div className="bg-[#f7faf9] w-[200px] min-w-[200px] fixed top-0 left-0 h-screen z-1000 transition-all duration-[300ms]">
         <div className="flex items-center justify-center h-[60px] pt-4 max-w-[160px] m-auto">
           <img className="w-full h-[40px]" src="/assets/logo.png"></img>
