@@ -240,7 +240,7 @@ function ForYou(book) {
                 Selected just for you
               </div>
               <a
-                className="sm:p-4 md:w-full md:flex-col md:gap-6 flex justify-between bg-[#fbefd6] rounded-sm mb-6"
+                className="flex flex-col md:flex-row gap-6 p-6 bg-[#fbefd6] rounded-sm mb-6"
                 href={`/book/${selectedBook?.id}`}
               >
                 <div className="md:w-full md:text-[14px] text-[#032b41]">
@@ -249,22 +249,20 @@ function ForYou(book) {
                 </div>
                 <div className="md:display-none w-px bg-[#bac8ce]"></div>
                 <div className="md:w-full flex gap-4">
-                  <div className="h-[140px] w-[140px] min-w-[140px]">
-                    <div className="flex gap-4">
-                      <figure className="h-[140px] w-[140px]">
-                        <img
-                          className="block"
-                          src={selectedBook?.imageLink}
-                          alt="book"
-                        ></img>
-                      </figure>
-                      <div className="flex flex-col">
-                        <div>{selectedBook?.title}</div>
-                        <div>{selectedBook?.author}</div>
-                        <div>
-                          <FiClock />{" "}
-                          <AudioTime src={selectedBook?.audioLink} />
-                        </div>
+                  <div className="flex gap-4">
+                    <figure className="h-[140px] w-[140px]">
+                      <img
+                        className="block w-full h-full"
+                        src={selectedBook?.imageLink}
+                        alt="book"
+                      ></img>
+                    </figure>
+                    <div className="flex flex-col">
+                      <div>{selectedBook?.title}</div>
+                      <div>{selectedBook?.author}</div>
+                      <div className="flex items-center gap-2">
+                        <FiClock />
+                        <AudioTime src={selectedBook?.audioLink} />
                       </div>
                     </div>
                   </div>
@@ -305,7 +303,7 @@ function ForYou(book) {
                       <div className="text-sm text-[#394547] mb-2">
                         {book.subTitle}
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex items-center gap font-sm font-light text-[#6b757b]">
                         <FiClock className="w-4 h-4" />
                         <AudioTime src={book.audioLink} />
                       </div>
