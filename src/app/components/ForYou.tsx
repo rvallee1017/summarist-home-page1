@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import auth from "../../firebase";
+import SearchBar from "./SearchBar";
+import Sidebar from "./Sidebar";
 import {
   FiHome,
   FiBookmark,
@@ -105,224 +107,106 @@ function ForYou() {
   };
 
   return (
-    <div className="box-border">
-      <div className="relative flex flex-col transition-all duration-300 md:max-w-full ml-[200px]">
-        <div className="bg-[#fff] border-b border-[#e1e7ea] h-[80px] z-1">
-          <div className="relative flex items-center justify-between p-5 max-width-[1070px] m-auto h-full">
-            <figure>
-              <img className="overflow-clip"></img>
-            </figure>
-            <div className="flex items-center gap-6 max-width-[340px] w-full">
-              <div className="flex items-center w-full justify-end">
-                <div className="relative gap-2">
-                  <div>
-                    <input
-                      className="h-10 w-full p-4 outline-none bg-[#f1f6f4] text-[#042330] border-2px rounded lg"
-                      placeholder="Search for books"
-                      type="text"
-                    ></input>
-                    <div className="flex items-center absolute h-full right-8px justify-end border-1-2 border-[#e1e7ea] p-2"></div>
-                  </div>
-                </div>
-                <div className="items-center justify-center cursor-pointer md:flex"></div>
-              </div>
-            </div>
+    <div className="min-h-screen bg-[#f7faf9]">
+      <Sidebar />
+
+      <div className="md:ml-[200px] px-6 py-10">
+        <div className="max-w-[1000px] mx-auto">
+          <div className="border-b border-gray-200 py-3 px-6 flex items-center justify-between md:justify-end">
+            <SearchBar />
           </div>
         </div>
-        <div className="opacity-0 pointer-events-none fixed top-0 right-0 w-full h-full bg-[#3a4649] transition-opacity duration-[400ms] ease-[ease] delay-0 z-10"></div>
-        <div className="bg-[#f7faf9] w-[200px] min-w-[200px] fixed top-0 left-0 h-screen z-1000 transition-all duration-[300ms] md:transform-x-full">
-          <div className="flex items-center justify-center h-[60px] pt-4 max-w-[160px] m-auto">
-            <img
-              className="w-full h-[40px]"
-              src="/assets/logo.png"
-              alt="Logo"
-            ></img>
-          </div>
-          <div className="flex flex-col justify-between h-[60px]">
-            <div className="flex-1-1 mt-[40px]">
-              {/* For You */}
-              <a
-                className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
-                href="/for-you"
-              >
-                <div className="bg-[#2bd97c] w-[5px] h-full mr-4"></div>
 
-                <div className="flex items-center justify-center mr-2">
-                  {" "}
-                  <FiHome size={22} />{" "}
-                </div>
-
-                <div className="m-0 p-0 box-border">For You</div>
-              </a>
-
-              {/* My Library */}
-              <a
-                className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
-                href="/library"
-              >
-                <div className="w-[5px] h-full bg-transparent mr-4"></div>
-
-                <div className="flex items-center justify-center mr-2">
-                  <FiBookmark size={22} />
-                </div>
-
-                <div className="m-0 p-0 box-border">My Library</div>
-              </a>
-
-              {/* Highlights */}
-              <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
-                <div className="w-[5px] h-full bg-transparent mr-4"></div>
-
-                <div className="flex items-center justify-center mr-2">
-                  <FiEdit size={22} />
-                </div>
-
-                <div className="m-0 p-0 box-border">Highlights</div>
-              </div>
-
-              {/* Search */}
-              <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
-                <div className="w-[5px] h-full bg-transparent mr-4"></div>
-
-                <div className="flex items-center justify-center mr-2">
-                  <FiSearch size={22} />
-                </div>
-
-                <div className="m-0 p-0 box-border">Search</div>
-              </div>
-
-              {/* Settings */}
-              <div className="m-0 p-0 border-box block fixed bottom-[23px]">
-                <a
-                  className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-pointer"
-                  href="/settings"
-                >
-                  <div className="w-[5px] h-full bg-transparent mr-4"></div>
-
-                  <div className="flex items-center justify-center mr-2">
-                    <FiSettings size={22} />
-                  </div>
-
-                  <div className="m-0 p-0 box-border">Settings</div>
-                </a>
-
-                {/* Help & Support */}
-                <div className="flex items-center h-[56px] text-[#032b41] mb-2 cursor-not-allowed">
-                  <div className="w-[5px] h-full bg-transparent mr-4"></div>
-
-                  <div className="flex items-center justify-center mr-2">
-                    <FiHelpCircle size={22} />
-                  </div>
-
-                  <div className="m-0 p-0 box-border">Help & Support</div>
-                </div>
-
-                {/* Logout */}
-                <div className="flex items-center h-[56px] text-[#032b41] cursor-pointer">
-                  <div className="w-[5px] h-full bg-transparent mr-4"></div>
-
-                  <div className="flex items-center justify-center mr-2">
-                    <FiLogOut size={22} />
-                  </div>
-
-                  <div className="m-0 p-0 box-border" onClick={handleLogout}>
-                    Logout
-                  </div>
-                </div>
-              </div>
+        <div className="max-w-[1070px] mx-auto px-4 py-6">
+          <div className="w-full">
+            <div className="text-[22px] font-bold text-[#032b41] mb-4">
+              Selected just for you
             </div>
-          </div>
-        </div>
-        <div className="max-w-[75%] items-center justify-center m-auto max-w-[1070px] px-4 py-6">
-          <div className="p-[40px] w-full">
-            <div className="m-0 p-0 border-box">
-              <div className="text-[22px] font-bold text-[#032b41] mb-4">
-                Selected just for you
+
+            <a
+              className="flex flex-col md:flex-row gap-6 p-6 bg-[#fbefd6] rounded-sm mb-6"
+              href={`/book/${selectedBook?.id}`}
+            >
+              <div className="md:w-full md:text-[14px] text-[#032b41]">
+                How Constant Innovation Creates Radically Successful Businesses
               </div>
-              <a
-                className="flex flex-col md:flex-row gap-6 p-6 bg-[#fbefd6] rounded-sm mb-6"
-                href={`/book/${selectedBook?.id}`}
-              >
-                <div className="md:w-full md:text-[14px] text-[#032b41]">
-                  How Constant Innovation Creates Radically Successful
-                  Businesses
-                </div>
-                <div className="md:display-none w-px bg-[#bac8ce]"></div>
-                <div className="md:w-full flex gap-4">
-                  <div className="flex gap-4">
-                    <figure className="h-[140px] w-[140px]">
-                      <img
-                        className="block w-full h-full"
-                        src={selectedBook?.imageLink}
-                        alt="book"
-                      ></img>
-                    </figure>
-                    <div className="flex flex-col">
-                      <div>{selectedBook?.title}</div>
-                      <div>{selectedBook?.author}</div>
-                      <div className="flex items-center gap-2">
-                        <FiClock />
-                        <AudioTime src={selectedBook?.audioLink} />
-                      </div>
+              <div className="hidden md:block w-px bg-[#bac8ce]" />
+              <div className="md:w-full flex gap-4">
+                <div className="flex gap-4">
+                  <figure className="h-[140px] w-[140px]">
+                    <img
+                      className="block w-full h-full"
+                      src={selectedBook?.imageLink}
+                      alt="book"
+                    />
+                  </figure>
+                  <div className="flex flex-col">
+                    <div>{selectedBook?.title}</div>
+                    <div>{selectedBook?.author}</div>
+                    <div className="flex items-center gap-2">
+                      <FiClock />
+                      <AudioTime src={selectedBook?.audioLink} />
                     </div>
                   </div>
                 </div>
-              </a>
-              <div>
-                <div className="text-[22px] font-bold text-[#032b41] mb-4">
-                  Recommended For You
-                </div>
-                <div className="font-light text-[#394547] mb-4">
-                  We think you'll like these
-                </div>
-                <div className="flex overflow-x-auto gap-4 snap-x mb-8">
-                  {recommendedBooks.map((book) => (
-                    <a
-                      key={book.id}
-                      href={`/book/${book.id}`}
-                      className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-width-[200px] w-full"
-                    >
-                      {book.subscriptionRequired && (
-                        <div className="absolute top-0 right-0 bg-[#032b41] text-white text-[10px] px-2 h-[18px] flex items-center rounded-full">
-                          Premium
-                        </div>
-                      )}
-                      <figure className="w-[172px] h-[172px]">
-                        <img
-                          className="w-full h-full"
-                          src={book.imageLink}
-                          alt={book.title}
-                        ></img>
-                      </figure>
-                      <div className="text-base font-bold text-[#032b41] mb-2">
-                        {book.title}
+              </div>
+            </a>
+
+            <div>
+              <div className="text-[22px] font-bold text-[#032b41] mb-4">
+                Recommended For You
+              </div>
+              <div className="font-light text-[#394547] mb-4">
+                We think you'll like these
+              </div>
+              <div className="flex overflow-x-auto gap-4 snap-x mb-8">
+                {recommendedBooks.map((book) => (
+                  <a
+                    key={book.id}
+                    href={`/book/${book.id}`}
+                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
+                  >
+                    {book.subscriptionRequired && (
+                      <div className="absolute top-0 right-0 bg-[#032b41] text-white text-[10px] px-2 h-[18px] flex items-center rounded-full">
+                        Premium
                       </div>
-                      <div className="text-sm text-[#6b757b] font-light mb-2">
-                        {book.author}
-                      </div>
-                      <div className="text-sm text-[#394547] mb-2">
-                        {book.subTitle}
-                      </div>
-                      <div className="flex items-center gap font-sm font-light text-[#6b757b]">
-                        <FiClock className="w-4 h-4" />
-                        <AudioTime src={book.audioLink} />
-                      </div>
-                      <div className="flex items-center gap-1 text-[14px] font-light text-[#6b757b]">
-                        <FiStar className="w-4 h-4" />
-                        <span>{book.averageRating}</span>
-                      </div>
-                    </a>
-                  ))}
-                </div>
+                    )}
+                    <figure className="w-[172px] h-[172px]">
+                      <img
+                        className="w-full h-full"
+                        src={book.imageLink}
+                        alt={book.title}
+                      />
+                    </figure>
+                    <div className="text-base font-bold text-[#032b41] mb-2">
+                      {book.title}
+                    </div>
+                    <div className="text-sm text-[#6b757b] font-light mb-2">
+                      {book.author}
+                    </div>
+                    <div className="text-sm text-[#394547] mb-2">
+                      {book.subTitle}
+                    </div>
+                    <div className="flex items-center gap font-sm font-light text-[#6b757b]">
+                      <FiClock className="w-4 h-4" />
+                      <AudioTime src={book.audioLink} />
+                    </div>
+                    <div className="flex items-center gap-1 text-[14px] font-light text-[#6b757b]">
+                      <FiStar className="w-4 h-4" />
+                      <span>{book.averageRating}</span>
+                    </div>
+                  </a>
+                ))}
               </div>
             </div>
+
             <div className="text-[22px] font-bold text-[#032b41] mb-4">
               Suggested Books
             </div>
             <div className="font-light text-[#394547] mb-4">
               Browse those books
             </div>
-            <div className="flex  overflow-x-auto gap-4 snap-x mb-5">
+            <div className="flex overflow-x-auto gap-4 snap-x mb-5">
               {suggestedBooks.map((book) => (
                 <a
                   key={book.id}
@@ -339,7 +223,7 @@ function ForYou() {
                       className="w-full h-full"
                       src={book.imageLink}
                       alt={book.title}
-                    ></img>
+                    />
                   </figure>
                   <div className="text-base font-bold text-[#032b41]">
                     {book.title}
