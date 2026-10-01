@@ -8,15 +8,15 @@ export default function ChoosePlan() {
             <div className="w-full">
                 <div className="relative text-center w-full pt-[48px] mb-[24px]">
                     <div className="max-w-[1000px] m-auto bg-[#032b41] px-[24px]">
-                        <div className="font-bold text-[48px] mb-[40px] md:text-[26px] md:mb-[32px]">Get unlimited access to many amazing books to read</div>
-                        <div className="text-[20px] mb-[32px] md:text-[16px]">Turn ordinary moments into amazing learning opportunities</div>
+                        <div className="font-bold text-[48px] mb-[40px] md:text-[26px] md:mb-[32px] text-white">Get unlimited access to many amazing books to read</div>
+                        <div className="text-[20px] mb-[32px] md:text-[16px] text-white">Turn ordinary moments into amazing learning opportunities</div>
                         <figure className="flex justify-center max-w-[340px] m-auto rounded-[180px] overflow-hidden">
                             <img className="w-full h-full" alt="pricing" src="/assets/pricing-top.png"></img></figure>
                             </div>
                             </div>
                             <div className="max-w-[1070px] w-full m-auto px-[24px]">
                                 <div className="w-full py-[40px]">
-                                    <div className="md:grid-cols-1 grid-cols-3 justify-center text-center gap-[24px] max-w-[800px] m-auto">
+                                    <div className="grid-cols-1 grid md:grid-cols-3 justify-center text-center gap-[24px] max-w-[800px] m-auto">
                                         <div>
                                             <figure className="flex justify-center text-[#032b41] mb-3"></figure>
                                             <div className="text-[#394547]">
