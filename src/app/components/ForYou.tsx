@@ -36,7 +36,7 @@ function AudioTime({ src }: { src: string }) {
   );
 }
 
-function ForYou(book) {
+function ForYou() {
   const router = useRouter();
   const [selectedBook, setSelectedBook] = useState<any>(null);
   const [recommendedBooks, setRecommendedBooks] = useState<any[]>([]);
