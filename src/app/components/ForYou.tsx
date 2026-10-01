@@ -12,6 +12,8 @@ import {
   FiSettings,
   FiHelpCircle,
   FiLogOut,
+  FiClock,
+  FiStar,
 } from "react-icons/fi";
 
 function AudioTime({ src }: { src: string }) {
@@ -237,7 +239,6 @@ function ForYou(book) {
               <div className="text-[22px] font-bold text-[#032b41] mb-4">
                 Selected just for you
               </div>
-              <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-lean-startup.mp3?alt=media&amp;token=c2f2b1d4-eaf2-4d47-8c8a-7a8fd062a47e"></audio>
               <a
                 className="sm:p-4 md:w-full md:flex-col md:gap-6 flex justify-between bg-[#fbefd6] rounded-sm mb-6"
                 href={`/book/${selectedBook?.id}`}
@@ -249,24 +250,20 @@ function ForYou(book) {
                 <div className="md:display-none w-px bg-[#bac8ce]"></div>
                 <div className="md:w-full flex gap-4">
                   <div className="h-[140px] w-[140px] min-w-[140px]">
-                    <div className="flex gap-4 md:w-full ">
-                      <figure className="h-[140px] w-[140px] min-w-[140px]">
+                    <div className="flex gap-4">
+                      <figure className="h-[140px] w-[140px]">
                         <img
                           className="block"
                           src={selectedBook?.imageLink}
                           alt="book"
                         ></img>
                       </figure>
-                      <div className="font-semibold text-[#032b41] mb-2">
-                        {selectedBook?.title}
-                      </div>
-                      <div className="text-sm text-[#394547] mb-4">
-                        {selectedBook?.author}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center w-[40px] min-w-[40px] h-[40px]"></div>
-                        <div className="text-[14px] font-medium text-[#032b41]">
-                         <AudioTime src={book.audioLink} />
+                      <div className="flex flex-col">
+                        <div>{selectedBook?.title}</div>
+                        <div>{selectedBook?.author}</div>
+                        <div>
+                          <FiClock />{" "}
+                          <AudioTime src={selectedBook?.audioLink} />
                         </div>
                       </div>
                     </div>
@@ -282,31 +279,42 @@ function ForYou(book) {
                 </div>
                 <div className="flex overflow-x-auto gap-4 snap-x mb-8">
                   {recommendedBooks.map((book) => (
-                  <a key={book.id} href={`/book/${book.id}`}
-                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-width-[200px] w-full">
-                    <figure className="w-[172px] h-[172px]">
-                      <img
-                        className="w-full h-full"
-                        src={book.imageLink} alt={book.title}
-                      ></img>
-                    </figure>
-                    <div className="text-base font-bold text-[#032b41] mb-2">
-                      {book.title}
-                    </div>
-                    <div className="text-sm text-[#6b757b] font-light mb-2">
-                      {book.author}
-                    </div>
-                    <div className="text-sm text-[#394547] mb-2">{book.subTitle}</div>
-                      <div className="flex gap-2">
-                        <div className="flex w-4 h-4"></div>
-                        <div className="m-0 p-0 border-box"><AudioTime src={book.audioLink} /></div>
-                      <div className="flex items-center gap-1 text-[14px] font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div className="m-0 p-0 border-box">{book.averageRating}</div>
+                    <a
+                      key={book.id}
+                      href={`/book/${book.id}`}
+                      className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-width-[200px] w-full"
+                    >
+                      {book.subscriptionRequired && (
+                        <div className="absolute top-0 right-0 bg-[#032b41] text-white text-[10px] px-2 h-[18px] flex items-center rounded-full">
+                          Premium
+                        </div>
+                      )}
+                      <figure className="w-[172px] h-[172px]">
+                        <img
+                          className="w-full h-full"
+                          src={book.imageLink}
+                          alt={book.title}
+                        ></img>
+                      </figure>
+                      <div className="text-base font-bold text-[#032b41] mb-2">
+                        {book.title}
                       </div>
-                    </div>
-                  </a>
-                   ))}
+                      <div className="text-sm text-[#6b757b] font-light mb-2">
+                        {book.author}
+                      </div>
+                      <div className="text-sm text-[#394547] mb-2">
+                        {book.subTitle}
+                      </div>
+                      <div className="flex gap-2">
+                        <FiClock className="w-4 h-4" />
+                        <AudioTime src={book.audioLink} />
+                      </div>
+                      <div className="flex items-center gap-1 text-[14px] font-light text-[#6b757b]">
+                        <FiStar className="w-4 h-4" />
+                        <span>{book.averageRating}</span>
+                      </div>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
@@ -318,34 +326,43 @@ function ForYou(book) {
             </div>
             <div className="flex  overflow-x-auto gap-4 snap-x mb-5">
               {suggestedBooks.map((book) => (
-              <a key={book.id} href={`/book/${book.id}`}
-                className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full">
-                <figure className="w-[172px] h-[172px] mb-2">
-                  <img
-                    className="w-full h-full"
-                    src={book.imageLink} alt={book.title}
-                  ></img>
-                </figure>
-                <div className="text-base font-bold text-[#032b41]">
-                  {book.title}
-                </div>
-                <div className="text-sm text-[#6b757b] font-light mb-2">
-                  {book.author}
-                </div>
-                <div className="text-sm text-[#394547] mb-2">
-                  {book.subTitle}
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap font-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div><AudioTime src={book.audioLink} /></div>
+                <a
+                  key={book.id}
+                  href={`/book/${book.id}`}
+                  className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
+                >
+                  {book.subscriptionRequired && (
+                    <div className="absolute top-0 right-0 bg-[#032b41] text-white text-[10px] px-2 h-[18px] flex items-center rounded-full">
+                      Premium
+                    </div>
+                  )}
+                  <figure className="w-[172px] h-[172px] mb-2">
+                    <img
+                      className="w-full h-full"
+                      src={book.imageLink}
+                      alt={book.title}
+                    ></img>
+                  </figure>
+                  <div className="text-base font-bold text-[#032b41]">
+                    {book.title}
                   </div>
-                  <div className="flex items-center gap text-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>{book.averageRating}</div>
+                  <div className="text-sm text-[#6b757b] font-light mb-2">
+                    {book.author}
                   </div>
-                </div>
-              </a>
+                  <div className="text-sm text-[#394547] mb-2">
+                    {book.subTitle}
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="flex items-center gap font-sm font-light text-[#6b757b]">
+                      <FiClock className="w-4 h-4" />
+                      <AudioTime src={book.audioLink} />
+                    </div>
+                    <div className="flex items-center gap text-sm font-light text-[#6b757b]">
+                      <FiStar className="w-4 h-4" />
+                      <span>{book.averageRating}</span>
+                    </div>
+                  </div>
+                </a>
               ))}
             </div>
           </div>
