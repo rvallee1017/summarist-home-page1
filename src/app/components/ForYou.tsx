@@ -14,11 +14,31 @@ import {
   FiLogOut,
 } from "react-icons/fi";
 
-function ForYou() {
+function AudioTime({ src }: { src: string }) {
+  const [time, setTime] = useState("");
+
+  return (
+    <>
+      <audio
+        src={src}
+        preload="metadata"
+        onLoadedMetadata={(e) => {
+          const seconds = Math.floor(e.currentTarget.duration);
+          const minutes = Math.floor(seconds / 60);
+          const secs = String(seconds % 60).padStart(2, "0");
+          setTime(`${minutes}:${secs}`);
+        }}
+      />
+      <span>{time}</span>
+    </>
+  );
+}
+
+function ForYou(book) {
   const router = useRouter();
   const [selectedBook, setSelectedBook] = useState<any>(null);
-  const [recommendedBook, setRecommendedBook] = useState<any>(null);
-  const [suggestedBook, setSuggestedBook] = useState<any>(null);
+  const [recommendedBooks, setRecommendedBooks] = useState<any[]>([]);
+  const [suggestedBooks, setSuggestedBooks] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchSelectedBook = async () => {
@@ -40,41 +60,41 @@ function ForYou() {
   }, []);
 
   useEffect(() => {
-    const fetchSuggestedBook = async () => {
+    const fetchSuggestedBooks = async () => {
       try {
         const response = await fetch(
           "https://us-central1-summaristt.cloudfunctions.net/getBooks?status=suggested",
         );
 
         const data = await response.json();
-        setSuggestedBook(data[0]);
+        setSuggestedBooks(data);
 
-        console.log("Suggested Book:", data);
+        console.log("Suggested Books:", data);
       } catch (error) {
-        console.error("Error fetching suggested book:", error);
+        console.error("Error fetching suggested books:", error);
       }
     };
 
-    fetchSuggestedBook();
+    fetchSuggestedBooks();
   }, []);
 
   useEffect(() => {
-    const fetchRecommendedBook = async () => {
+    const fetchRecommendedBooks = async () => {
       try {
         const response = await fetch(
           "https://us-central1-summaristt.cloudfunctions.net/getBooks?status=recommended",
         );
 
         const data = await response.json();
-        setRecommendedBook(data[0]);
+        setRecommendedBooks(data);
 
-        console.log("Recommended Book:", data);
+        console.log("Recommended Books:", data);
       } catch (error) {
-        console.error("Error fetching recommended book:", error);
+        console.error("Error fetching recommended books:", error);
       }
     };
 
-    fetchRecommendedBook();
+    fetchRecommendedBooks();
   }, []);
 
   const handleLogout = async () => {
@@ -246,7 +266,7 @@ function ForYou() {
                       <div className="flex items-center gap-2">
                         <div className="flex items-center w-[40px] min-w-[40px] h-[40px]"></div>
                         <div className="text-[14px] font-medium text-[#032b41]">
-                          3 mins 23 secs
+                         <AudioTime src={book.audioLink} />
                         </div>
                       </div>
                     </div>
@@ -261,240 +281,32 @@ function ForYou() {
                   We think you'll like these
                 </div>
                 <div className="flex overflow-x-auto gap-4 snap-x mb-8">
-                  <a
-                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-width-[200px] w-full"
-                    href={`/book/${recommendedBook?.id}`}
-                  >
-                    <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fhow-to-win-friends-and-influence-people.mp3?alt=media&amp;token=60872755-13fc-43f4-8b75-bae3fcd73991"></audio>
+                  {recommendedBooks.map((book) => (
+                  <a key={book.id} href={`/book/${book.id}`}
+                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-width-[200px] w-full">
                     <figure className="w-[172px] h-[172px]">
                       <img
                         className="w-full h-full"
-                        src={recommendedBook?.imageLink}
+                        src={book.imageLink} alt={book.title}
                       ></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                      {recommendedBook?.title}
+                      {book.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
-                      {recommendedBook?.author}
+                      {book.author}
                     </div>
-                    <div className="text-sm text-[#394547] mb-2">
+                    <div className="text-sm text-[#394547] mb-2">{book.subTitle}</div>
                       <div className="flex gap-2">
                         <div className="flex w-4 h-4"></div>
-                        <div className="m-0 p-0 border-box">03:24</div>
-                      </div>
+                        <div className="m-0 p-0 border-box"><AudioTime src={book.audioLink} /></div>
                       <div className="flex items-center gap-1 text-[14px] font-light text-[#6b757b]">
                         <div className="flex w-4 h-4"></div>
-                        <div className="m-0 p-0 border-box">4.4</div>
+                        <div className="m-0 p-0 border-box">{book.averageRating}</div>
                       </div>
                     </div>
                   </a>
-                  <a
-                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-width-[200px] w-full"
-                    href={`/book/${recommendedBook?.id}`}
-                  >
-                    <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fcan't-hurt-me.mp3?alt=media&amp;token=7de57406-60ca-49d6-9113-857507f48312"></audio>
-                    <figure className="w-[172px] h-[172px]">
-                      <img
-                        className="w-full h-full"
-                        src={recommendedBook?.imageLink}
-                      ></img>
-                    </figure>
-                    <div className="text-sm font-bold text-[#032b41] mb-2">
-                      {recommendedBook?.title}
-                    </div>
-                    <div className="text-sm text-[#6b757b] font-light mb-2">
-                      {recommendedBook?.author}
-                    </div>
-                    <div className="text-sm text-[#394547] mb-4">
-                      {recommendedBook?.description}
-                    </div>
-                    <div className="flex gap-2">
-                      <div className="flex items-center gap-1 font-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>04:52</div>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>4.2</div>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-width-[200px] w-full"
-                    href={`/book/${recommendedBook?.id}`}
-                  >
-                    <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fmastery.mp3?alt=media&amp;token=364b7c19-e9b1-4084-be0d-3a9cb5367098"></audio>
-                    <figure className="w-[172px] h-[172px] mb-2">
-                      <img
-                        className="block w-full h-full"
-                        src={recommendedBook?.imageLink}
-                      ></img>
-                    </figure>
-                    <div className="text-base font-bold text-[#032b41] mb-2">
-                      {recommendedBook?.title}
-                    </div>
-                    <div className="text-sm text-[#6b757b] font-light mb-2">
-                      {recommendedBook?.author}
-                    </div>
-                    <div className="text-sm text-[#394547] mb-4">
-                      {recommendedBook?.description}
-                    </div>
-                    <div className="flex gap-2">
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>04:40</div>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>4.3</div>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                    href={`/book/${recommendedBook?.id}`}
-                  >
-                    <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fatomic-habits.mp3?alt=media&amp;token=e9bd4ea8-044a-4c73-acac-1228e3bc50b6"></audio>
-                    <figure className="w-[172px] h-[172px] mb-2">
-                      <img
-                        className="w-full h-full"
-                        src={recommendedBook?.imageLink}
-                        alt="book"
-                      ></img>
-                    </figure>
-                    <div className="text-base font-bold text-[#032b41] mb-2">
-                      {recommendedBook?.title}
-                    </div>
-                    <div className="text-sm text-[#6b757b] font-light mb-2">
-                      {recommendedBook?.author}
-                    </div>
-                    <div className="text-sm text-[#394547] mb-4">
-                      {recommendedBook?.description}
-                    </div>
-                    <div className="flex gap-2">
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>03:24</div>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>4.3</div>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                    href={`/book/${recommendedBook?.id}`}
-                  >
-                    <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fhow-to-talk-to-anyone.mp3?alt=media&amp;token=30173e56-fbe6-4162-8184-64d24dc480ac"></audio>
-                    <figure className="w-[172px] h-[172px] mb-2">
-                      <img src={recommendedBook?.imageLink} alt="book"></img>
-                    </figure>
-                    <div className="text-base font-bold text-[#032b41] mb-2">
-                      {recommendedBook?.title}
-                    </div>
-                    <div className="text-sm text-[#6b757b] font-light mb-2">
-                      {recommendedBook?.author}
-                    </div>
-                    <div className="text-sm text-[#394547] mb-4">
-                      {recommendedBook?.description}
-                    </div>
-                    <div className="flex gap-2">
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>03:22</div>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>4.6</div>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                    href={`/book/${recommendedBook?.id}`}
-                  >
-                    <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fgood-to-great.mp3?alt=media&amp;token=c1b30865-26f7-47c5-a0f3-fd9da5d3da3d"></audio>
-                    <figure className="w-[172px] h-[172px] mb-2">
-                      <img src={recommendedBook?.imageLink} alt="book"></img>
-                    </figure>
-                    <div className="text-base font-bold text-[#032b41] mb-2">
-                      {recommendedBook?.title}
-                    </div>
-                    <div className="text-sm text-[#6b757b] font-light mb-2">
-                      {recommendedBook?.author}
-                    </div>
-                    <div className="text-sm text-[#394547] mb-4">
-                      {recommendedBook?.description}
-                    </div>
-                    <div className="flex gap-2">
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>03:01</div>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>4.5</div>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                    href={`/book/${recommendedBook?.id}`}
-                  >
-                    <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-intelligent-investor.mp3?alt=media&amp;token=82429bb8-8af4-4375-bca5-e6f89e631fca"></audio>
-                    <figure className="w-[172px] h-[172px] mb-2">
-                      <img src={recommendedBook?.imageLink} alt="book"></img>
-                    </figure>
-                    <div className="text-base font-bold text-[#032b41] mb-2">
-                      {recommendedBook?.title}
-                    </div>
-                    <div className="text-sm text-[#6b757b] font-light mb-2">
-                      {recommendedBook?.author}
-                    </div>
-                    <div className="text-sm text-[#394547] mb-4">
-                      {recommendedBook?.description}
-                    </div>
-                    <div className="flex gap-2">
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>02:48</div>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>4.8</div>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                    href={`/book/${recommendedBook?.id}`}
-                  >
-                    <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-4-day-week.mp3?alt=media&amp;token=6265f7a5-1dab-422d-8d22-71cdb70678a1"></audio>
-                    <figure className="w-[172px] h-[172px] mb-2">
-                      <img src={recommendedBook?.imageLink} alt="book"></img>
-                    </figure>
-                    <div className="text-base font-bold text-[#032b41] mb-2">
-                      {recommendedBook?.title}
-                    </div>
-                    <div className="text-sm text-[#6b757b] font-light mb-2">
-                      {recommendedBook?.author}
-                    </div>
-                    <div className="text-sm text-[#394547] mb-4">
-                      {recommendedBook?.description}
-                    </div>
-                    <div className="flex gap-2">
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>02:20</div>
-                      </div>
-                      <div className="flex items-center gap-1 text-sm font-light text-[#6b757b]">
-                        <div className="flex w-4 h-4"></div>
-                        <div>4.6</div>
-                      </div>
-                    </div>
-                  </a>
+                   ))}
                 </div>
               </div>
             </div>
@@ -505,230 +317,36 @@ function ForYou() {
               Browse those books
             </div>
             <div className="flex  overflow-x-auto gap-4 snap-x mb-5">
-              <a
-                className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href={`/book/${suggestedBook?.id}`}
-              >
-                <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fzero-to-one.mp3?alt=media&amp;token=29494cf2-2c9e-404a-bb76-c4fb2a23d8f2"></audio>
+              {suggestedBooks.map((book) => (
+              <a key={book.id} href={`/book/${book.id}`}
+                className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full">
                 <figure className="w-[172px] h-[172px] mb-2">
                   <img
                     className="w-full h-full"
-                    src={suggestedBook?.imageLink}
-                    alt="book"
+                    src={book.imageLink} alt={book.title}
                   ></img>
                 </figure>
                 <div className="text-base font-bold text-[#032b41]">
-                  {suggestedBook?.title}
+                  {book.title}
                 </div>
                 <div className="text-sm text-[#6b757b] font-light mb-2">
-                  {suggestedBook?.author}
+                  {book.author}
                 </div>
                 <div className="text-sm text-[#394547] mb-2">
-                  {suggestedBook?.description}
+                  {book.subTitle}
                 </div>
                 <div className="flex gap-2">
                   <div className="flex items-center gap font-sm font-light text-[#6b757b]">
                     <div className="flex w-4 h-4"></div>
-                    <div>03:24</div>
+                    <div><AudioTime src={book.audioLink} /></div>
                   </div>
                   <div className="flex items-center gap text-sm font-light text-[#6b757b]">
                     <div className="flex w-4 h-4"></div>
-                    <div>4.3</div>
+                    <div>{book.averageRating}</div>
                   </div>
                 </div>
               </a>
-              <a
-                className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href={`/book/${suggestedBook?.id}`}
-              >
-                <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Frich-dad-poor-dad.mp3?alt=media&amp;token=e65e6fc1-b5c7-4aed-9715-07a96ec12db1"></audio>
-                <figure className="w-[172px] h-[172px] mb-2">
-                  <img
-                    className="w-full h-full"
-                    src={suggestedBook?.imageLink}
-                    alt="book"
-                  ></img>
-                </figure>
-                <div className="text-base font-bold text-[#032b41]">
-                  {suggestedBook?.title}
-                </div>
-                <div className="text-sm text-[#6b757b] font-light mb-2">
-                  {suggestedBook?.author}
-                </div>
-                <div className="text-sm text-[#394547] mb-2">
-                  {suggestedBook?.description}
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap font-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>05:38</div>
-                  </div>
-                  <div className="flex items-center gap text-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>4.5</div>
-                  </div>
-                </div>
-              </a>
-              <a
-                className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href={`/book/${suggestedBook?.id}`}
-              >
-                <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-10x-rule.mp3?alt=media&amp;token=4638392a-ced3-4926-a8b3-1c7a4fbe520a"></audio>
-                <figure className="w-[172px] h-[172px] mb-2">
-                  <img
-                    className="w-full h-full"
-                    src={suggestedBook?.imageLink}
-                    alt="book"
-                  ></img>
-                </figure>
-                <div className="text-base font-bold text-[#032b41]">
-                  {suggestedBook?.title}
-                </div>
-                <div className="text-sm text-[#6b757b] font-light mb-2">
-                  {suggestedBook?.author}
-                </div>
-                <div className="text-sm text-[#394547] mb-2">
-                  {suggestedBook?.description}
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap font-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>03:18</div>
-                  </div>
-                  <div className="flex items-center gap text-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>4</div>
-                  </div>
-                </div>
-              </a>
-              <a
-                className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href={`/book/${suggestedBook?.id}`}
-              >
-                <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fdeep-work.mp3?alt=media&amp;token=f1749513-05ab-4733-8675-6073ba6ac5e9"></audio>
-                <figure className="w-[172px] h-[172px] mb-2">
-                  <img
-                    className="w-full h-full"
-                    src={suggestedBook?.imageLink}
-                    alt="book"
-                  ></img>
-                </figure>
-                <div className="text-base font-bold text-[#032b41]">
-                  {suggestedBook?.title}
-                </div>
-                <div className="text-sm text-[#6b757b] font-light mb-2">
-                  {suggestedBook?.author}
-                </div>
-                <div className="text-sm text-[#394547] mb-2">
-                  {suggestedBook?.description}
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap font-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>02:50</div>
-                  </div>
-                  <div className="flex items-center gap text-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>4.3</div>
-                  </div>
-                </div>
-              </a>
-              <a
-                className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href={`/book/${suggestedBook?.id}`}
-              >
-                <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-5-second-rule.mp3?alt=media&amp;token=9a0e621a-c545-431f-8d19-052cc445844a"></audio>
-                <figure className="w-[172px] h-[172px] mb-2">
-                  <img
-                    className="w-full h-full"
-                    src={suggestedBook?.imageLink}
-                    alt="book"
-                  ></img>
-                </figure>
-                <div className="text-base font-bold text-[#032b41]">
-                  {suggestedBook?.title}
-                </div>
-                <div className="text-sm text-[#6b757b] font-light mb-2">
-                  {suggestedBook?.author}
-                </div>
-                <div className="text-sm text-[#394547] mb-2">
-                  {suggestedBook?.description}
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap font-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>02:45</div>
-                  </div>
-                  <div className="flex items-center gap text-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>4.3</div>
-                  </div>
-                </div>
-              </a>
-              <a
-                className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href={`/book/${suggestedBook?.id}`}
-              >
-                <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fthe-12-week-year.mp3?alt=media&amp;token=7542f2ee-eafe-44a7-9606-17f070d83af8"></audio>
-                <figure className="w-[172px] h-[172px] mb-2">
-                  <img
-                    className="w-full h-full"
-                    src={suggestedBook?.imageLink}
-                    alt="book"
-                  ></img>
-                </figure>
-                <div className="text-base font-bold text-[#032b41]">
-                  {suggestedBook?.title}
-                </div>
-                <div className="text-sm text-[#6b757b] font-light mb-2">
-                  {suggestedBook?.author}
-                </div>
-                <div className="text-sm text-[#394547] mb-2">
-                  {suggestedBook?.description}
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap font-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>03:36</div>
-                  </div>
-                  <div className="flex items-center gap text-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>4.6</div>
-                  </div>
-                </div>
-              </a>
-              <a
-                className="relative snap-start pt-8 px-3 pb-3 decoration-none rounded-sm max-w-[200px] w-full"
-                href={`/book/${suggestedBook?.id}`}
-              >
-                <audio src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Faudios%2Fgetting-things-done.mp3?alt=media&amp;token=82466b53-7e16-4044-a79f-53bda67a39fe"></audio>
-                <figure className="w-[172px] h-[172px] mb-2">
-                  <img
-                    className="w-full h-full"
-                    src={suggestedBook?.imageLink}
-                    alt="book"
-                  ></img>
-                </figure>
-                <div className="text-base font-bold text-[#032b41]">
-                  {suggestedBook?.title}
-                </div>
-                <div className="text-sm text-[#6b757b] font-light mb-2">
-                  {suggestedBook?.author}
-                </div>
-                <div className="text-sm text-[#394547] mb-2">
-                  {suggestedBook?.description}
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap font-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>02:24</div>
-                  </div>
-                  <div className="flex items-center gap text-sm font-light text-[#6b757b]">
-                    <div className="flex w-4 h-4"></div>
-                    <div>4.3</div>
-                  </div>
-                </div>
-              </a>
+              ))}
             </div>
           </div>
         </div>
