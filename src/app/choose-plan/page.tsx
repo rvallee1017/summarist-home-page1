@@ -35,7 +35,7 @@ export default function ChoosePlan() {
                                                                     </div>
                                                                     </div>
                                                                     <div className="md:text-[24px] text-[#032b41] text-center mb-8 font-bold">Choose the plan that fits you</div>
-                                                                    <div className="border-4px border-[#2be080] flex gap-6 p-6 bg-[#f1f6f4] rounded-sm cursor-pointer max-w-[680px] m-auto">
+                                                                    <div className="border-4 border-[#2be080] flex gap-6 p-6 bg-[#f1f6f4] rounded-sm cursor-pointer max-w-[680px] m-auto">
                                                                         <div className="relative w-6 h-6 rounded-[50%] border-[#000] flex items-center justify-center">
                                                                             <div className="absolute w-[6px] h-[6px] bg-[#000] rounded-[50%]"></div>
                                                                         </div>
@@ -48,7 +48,7 @@ export default function ChoosePlan() {
                                                                             <div className="text-sm text-[#6b757b] flex items-center gap-2 max-w-[240px] m-auto">
                                                                                 <div>or</div>
                                                                                 </div>
-                                                                                <div className="felx gap-6 p-6 bg-[#f1f6f4] border-[#bac8ce] rounded-sm cursor-pointer max-w-[680px] m-auto">
+                                                                                <div className="flex gap-6 p-6 bg-[#f1f6f4] border-[#bac8ce] rounded-sm cursor-pointer max-w-[680px] m-auto">
                                                                                     <div className="relative w-6 h-6 border-[50%] border-[#000] flex items-center justify-center"></div>
                                                                                     <div>
                                                                                         <div className="md:text-base text-lg font-semibold text-[#032b41] mb-2">Premium Monthly</div>
@@ -58,7 +58,7 @@ export default function ChoosePlan() {
                                                                                         </div>
                                                                                         <div className="bg-[#fff] sticky border-0 z-1 p-8 flex flex-col items-center gap-4">
                                                                                             <span>
-                                                                                                <button className="w-[300px] bg-[#2bd97c] text-[#032b41] h-[40px] rounded-sm text-base transition-bg duration-200ms flex items-cneter justify-center min-w-[180px] cursour-pointer">
+                                                                                                <button className="w-[300px] bg-[#2bd97c] text-[#032b41] h-[40px] rounded-sm text-base transition-bg duration-200ms flex items-center justify-center min-w-[180px] cursor-pointer">
                                                                                                     <span>Start your free 7-day trial</span>
                                                                                                     </button>
                                                                                                     </span>
