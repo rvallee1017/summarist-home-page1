@@ -16,7 +16,7 @@ export default function ChoosePlan() {
                             </div>
                             <div className="max-w-[1070px] w-full m-auto px-[24px]">
                                 <div className="w-full py-[40px]">
-                                    <div className="md:grid-cols-1 grid-col-3 justify-center text-center gap-[24px] max-w-[800px] m-auto">
+                                    <div className="md:grid-cols-1 grid-cols-3 justify-center text-center gap-[24px] max-w-[800px] m-auto">
                                         <div>
                                             <figure className="flex justify-center text-[#032b41] mb-3"></figure>
                                             <div className="text-[#394547]">
