@@ -301,13 +301,13 @@ function ForYou() {
                       ></img>
                     </figure>
                     <div className="text-sm font-bold text-[#032b41] mb-2">
-                       {recommendedBook?.title}
+                      {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
                       {recommendedBook?.author}
                     </div>
                     <div className="text-sm text-[#394547] mb-4">
-                      Master Your Mind and Defy the Odds
+                      {recommendedBook?.description}
                     </div>
                     <div className="flex gap-2">
                       <div className="flex items-center gap-1 font-sm font-light text-[#6b757b]">
@@ -332,7 +332,7 @@ function ForYou() {
                       ></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                       {recommendedBook?.title}
+                      {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
                       {recommendedBook?.author}
@@ -364,7 +364,7 @@ function ForYou() {
                       ></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                       {recommendedBook?.title}
+                      {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
                       {recommendedBook?.author}
@@ -392,7 +392,7 @@ function ForYou() {
                       <img src={recommendedBook?.imageLink} alt="book"></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                       {recommendedBook?.title}
+                      {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
                       {recommendedBook?.author}
@@ -420,7 +420,7 @@ function ForYou() {
                       <img src={recommendedBook?.imageLink} alt="book"></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                       {recommendedBook?.title}
+                      {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
                       {recommendedBook?.author}
@@ -448,7 +448,7 @@ function ForYou() {
                       <img src={recommendedBook?.imageLink} alt="book"></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                       {recommendedBook?.title}
+                      {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
                       {recommendedBook?.author}
@@ -476,7 +476,7 @@ function ForYou() {
                       <img src={recommendedBook?.imageLink} alt="book"></img>
                     </figure>
                     <div className="text-base font-bold text-[#032b41] mb-2">
-                       {recommendedBook?.title}
+                      {recommendedBook?.title}
                     </div>
                     <div className="text-sm text-[#6b757b] font-light mb-2">
                       {recommendedBook?.author}
@@ -513,12 +513,12 @@ function ForYou() {
                 <figure className="w-[172px] h-[172px] mb-2">
                   <img
                     className="w-full h-full"
-                    src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fzero-to-one.png?alt=media&amp;token=0c64bbe6-4e9e-4a0e-adc9-9e218dd12402"
+                    src={suggestedBook?.imageLink}
                     alt="book"
                   ></img>
                 </figure>
                 <div className="text-base font-bold text-[#032b41]">
-                   {suggestedBook?.title}
+                  {suggestedBook?.title}
                 </div>
                 <div className="text-sm text-[#6b757b] font-light mb-2">
                   {suggestedBook?.author}
@@ -545,7 +545,7 @@ function ForYou() {
                 <figure className="w-[172px] h-[172px] mb-2">
                   <img
                     className="w-full h-full"
-                    src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Frich-dad-poor-dad.png?alt=media&amp;token=dc226e0c-fd89-4897-9605-9603e04a9966"
+                    src={suggestedBook?.imageLink}
                     alt="book"
                   ></img>
                 </figure>
@@ -577,7 +577,7 @@ function ForYou() {
                 <figure className="w-[172px] h-[172px] mb-2">
                   <img
                     className="w-full h-full"
-                    src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fthe-10x-rule.png?alt=media&amp;token=1e766af7-97ec-4bb8-969f-95ca35cf1d68"
+                    src={suggestedBook?.imageLink}
                     alt="book"
                   ></img>
                 </figure>
@@ -609,7 +609,7 @@ function ForYou() {
                 <figure className="w-[172px] h-[172px] mb-2">
                   <img
                     className="w-full h-full"
-                    src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fdeep-work.png?alt=media&amp;token=3a857c13-f374-4c82-b134-fef5a01c202e"
+                    src={suggestedBook?.imageLink}
                     alt="book"
                   ></img>
                 </figure>
@@ -641,7 +641,7 @@ function ForYou() {
                 <figure className="w-[172px] h-[172px] mb-2">
                   <img
                     className="w-full h-full"
-                    src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fthe-five-second-rule.png?alt=media&amp;token=8d6d24fd-11c8-425d-b7f0-3ae1499192db"
+                    src={suggestedBook?.imageLink}
                     alt="book"
                   ></img>
                 </figure>
@@ -673,7 +673,7 @@ function ForYou() {
                 <figure className="w-[172px] h-[172px] mb-2">
                   <img
                     className="w-full h-full"
-                    src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fthe-twelve-week-year.png?alt=media&amp;token=e6c87df7-f57c-4026-b364-9ba05541b438"
+                    src={suggestedBook?.imageLink}
                     alt="book"
                   ></img>
                 </figure>
@@ -705,7 +705,7 @@ function ForYou() {
                 <figure className="w-[172px] h-[172px] mb-2">
                   <img
                     className="w-full h-full"
-                    src="https://firebasestorage.googleapis.com/v0/b/summaristt.appspot.com/o/books%2Fimages%2Fgetting-things-done.png?alt=media&amp;token=b1d71920-25fd-4b8b-ad2b-7652f27b4cbc"
+                    src={suggestedBook?.imageLink}
                     alt="book"
                   ></img>
                 </figure>
