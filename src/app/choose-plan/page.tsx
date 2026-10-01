@@ -7,10 +7,10 @@ export default function ChoosePlan() {
             </div>
             <div className="w-full">
                 <div className="relative text-center w-full pt-[48px] mb-[24px]">
-                    <div className="max-w-[1000px] m-auto bg-[#032b41] px-[24px]">
-                        <div className="font-bold text-[48px] mb-[40px] md:text-[26px] md:mb-[32px] text-white">Get unlimited access to many amazing books to read</div>
-                        <div className="text-[20px] mb-[32px] md:text-[16px] text-white">Turn ordinary moments into amazing learning opportunities</div>
-                        <figure className="flex justify-center max-w-[340px] m-auto rounded-[180px] overflow-hidden">
+                    <div className="max-w-[1000px] m-auto bg-[#032b41] px-[24px] rounded-b-[256px]">
+                        <div className="font-bold md:text-[48px] mb-[40px] text-[26px] md:mb-[32px] text-white text-center">Get unlimited access to many amazing books to read</div>
+                        <div className="md:text-[20px] mb-[32px] text-[16px] text-white text-center">Turn ordinary moments into amazing learning opportunities</div>
+                        <figure className="flex justify-center max-w-[340px] m-auto rounded-t-[180px] overflow-hidden">
                             <img className="w-full h-full" alt="pricing" src="/assets/pricing-top.png"></img></figure>
                             </div>
                             </div>
