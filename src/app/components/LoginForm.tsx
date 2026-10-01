@@ -113,7 +113,7 @@ function LoginFormPage({ onClose }: { onClose: () => void }) {
         <div className="text-center text-[#116be9] font-light text-sm w-fit m-auto cursor-pointer">
           Forgot your password?
         </div>
-        <button className="h-[40px] align-center bg-[#f1f6f4] text-[#116be9] w-full rounded-r-sm rounded-l-sm font-light text-base">
+        <button className="h-[40px] text-center bg-[#f1f6f4] text-[#116be9] w-full rounded-r-sm rounded-l-sm font-light text-base">
           Don't have an account?
         </button>
         <button

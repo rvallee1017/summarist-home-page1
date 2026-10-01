@@ -4,18 +4,19 @@ export default function ChoosePlan() {
   return (
     <div className="m-0 w-full">
         <div className="opacity-0 pointer-events-none fixed top-0 left-0 w-full h-full bg-[#3a4649] transition-opacity duration-400ms ease-ease z-10">
-            </div><div className="w-full">
-                <div className="relative align-center w-full pt-[48px] mb-[24px]">
-                    <div className="max-w-[1000px] m-auto text-[#fff] px-[24px]">
+            </div>
+            <div className="w-full">
+                <div className="relative text-center w-full pt-[48px] mb-[24px]">
+                    <div className="max-w-[1000px] m-auto bg-[#032b41] px-[24px]">
                         <div className="font-bold text-[48px] mb-[40px] md:text-[26px] md:mb-[32px]">Get unlimited access to many amazing books to read</div>
                         <div className="text-[20px] mb-[32px] md:text-[16px]">Turn ordinary moments into amazing learning opportunities</div>
                         <figure className="flex justify-center max-w-[340px] m-auto rounded-[180px] overflow-hidden">
-                            <img className="w-full h-full" alt="pricing" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpricing-top.4d86e93a.png&amp;w=1920&amp;q=75"></img></figure>
+                            <img className="w-full h-full" alt="pricing" src="/assets/pricin-top.png"></img></figure>
                             </div>
                             </div>
                             <div className="max-w-[1070px] w-full m-auto px-[24px]">
                                 <div className="w-full py-[40px]">
-                                    <div className="md:grid-cols-1 grid justify-center align-center gap-[24px] max-w-[800px] m-auto">
+                                    <div className="md:grid-cols-1 grid-col-3 justify-center text-center gap-[24px] max-w-[800px] m-auto">
                                         <div>
                                             <figure className="flex justify-center text-[#032b41] mb-3"></figure>
                                             <div className="text-[#394547]">
@@ -33,7 +34,7 @@ export default function ChoosePlan() {
                                                                     <b>Precise recommendations</b> collections curated by experts</div>
                                                                     </div>
                                                                     </div>
-                                                                    <div className="md:text-[24px] text-[#032b41] align-center mb-8 font-bold">Choose the plan that fits you</div>
+                                                                    <div className="md:text-[24px] text-[#032b41] text-center mb-8 font-bold">Choose the plan that fits you</div>
                                                                     <div className="border-4px border-[#2be080] flex gap-6 p-6 bg-[#f1f6f4] rounded-sm cursor-pointer max-w-[680px] m-auto">
                                                                         <div className="relative w-6 h-6 rounded-[50%] border-[#000] flex items-center justify-center">
                                                                             <div className="absolute w-[6px] h-[6px] bg-[#000] rounded-[50%]"></div>
@@ -61,7 +62,7 @@ export default function ChoosePlan() {
                                                                                                     <span>Start your free 7-day trial</span>
                                                                                                     </button>
                                                                                                     </span>
-                                                                                                    <div className="text-xs text-[#6b757b] align-center">Cancel your trial at any time before it ends, and you won’t be charged.</div>
+                                                                                                    <div className="text-xs text-[#6b757b] text-center">Cancel your trial at any time before it ends, and you won’t be charged.</div>
                                                                                                     </div>
                                                                                                     <div>
                                                                                                         <div className="border-b border-[#ddd] mb-2 overflow-hidden">
